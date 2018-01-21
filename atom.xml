@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Just get started</title>
+  <icon>https://www.gravatar.com/avatar/adfc5be35c0adf3d10a968a994a161c9</icon>
+  <subtitle>Coding4Life</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://ijavac.com/"/>
+  <updated>2018-01-21T10:00:52.307Z</updated>
+  <id>http://ijavac.com/</id>
+  
+  <author>
+    <name>ijavaC</name>
+    <email>ijavacs@gmail.com</email>
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>hello hexo</title>
+    <link href="http://ijavac.com/2018/01/21/hello-hexo/"/>
+    <id>http://ijavac.com/2018/01/21/hello-hexo/</id>
+    <published>2018-01-21T09:59:40.000Z</published>
+    <updated>2018-01-21T10:00:52.307Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="hexoTest" scheme="http://ijavac.com/categories/hexoTest/"/>
+    
+    
+      <category term="test" scheme="http://ijavac.com/tags/test/"/>
+    
+  </entry>
+  
+</feed>
