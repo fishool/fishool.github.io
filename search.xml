@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search>
-  <entry>
-    <title><![CDATA[hello hexo]]></title>
-    <url>%2F2018%2F01%2F21%2Fhello-hexo%2F</url>
-    <content type="text"></content>
-      <categories>
-        <category>hexoTest</category>
-      </categories>
-      <tags>
-        <tag>test</tag>
-      </tags>
-  </entry>
+<search> 
+  
+    
+    <entry>
+      <title><![CDATA[hello hexo]]></title>
+      <url>//blog/2018/01/21/hello-hexo/</url>
+      <content type="html"></content>
+      
+        <categories>
+            
+            <category> hexoTest </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> test </tag>
+            
+        </tags>
+        
+    </entry>
+    
+  
+  
 </search>
