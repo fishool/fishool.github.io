@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Just get Started" />
+  <meta name="keywords" content="Java,Spring," />
 
 
 
@@ -79,17 +79,20 @@
 
 
 
-<meta name="description" content="ijavacs@gmail.com">
-<meta name="keywords" content="后端,js,jquery,javascript,html5,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Let&#39;s get started">
-<meta property="og:url" content="http://ijavac.com/index.html">
+<meta name="description" content="Spring 框架是一个分层架构，它包含一系列的功能要素，并被分为大约20个模块。这些模块分为Core Container、Data Access/Integration、Web、AOP（Aspect Oriented Programming）、Instrumentation和测试部分，如目录中所带图所示：  Core Container ： Core Container(核心容器):包含有Co">
+<meta name="keywords" content="Java,Spring">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring框架结构">
+<meta property="og:url" content="http://ijavac.com/blog/2017/01/22/Spring框架结构/index.html">
 <meta property="og:site_name" content="Let&#39;s get started">
-<meta property="og:description" content="ijavacs@gmail.com">
+<meta property="og:description" content="Spring 框架是一个分层架构，它包含一系列的功能要素，并被分为大约20个模块。这些模块分为Core Container、Data Access/Integration、Web、AOP（Aspect Oriented Programming）、Instrumentation和测试部分，如目录中所带图所示：  Core Container ： Core Container(核心容器):包含有Co">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p0c64gln7.bkt.clouddn.com/spring%E6%A1%86%E6%9E%B6%E7%BB%93%E6%9E%84.png">
+<meta property="og:updated_time" content="2018-01-22T07:14:41.554Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Let&#39;s get started">
-<meta name="twitter:description" content="ijavacs@gmail.com">
+<meta name="twitter:title" content="Spring框架结构">
+<meta name="twitter:description" content="Spring 框架是一个分层架构，它包含一系列的功能要素，并被分为大约20个模块。这些模块分为Core Container、Data Access/Integration、Web、AOP（Aspect Oriented Programming）、Instrumentation和测试部分，如目录中所带图所示：  Core Container ： Core Container(核心容器):包含有Co">
+<meta name="twitter:image" content="http://p0c64gln7.bkt.clouddn.com/spring%E6%A1%86%E6%9E%B6%E7%BB%93%E6%9E%84.png">
 
 
 
@@ -119,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://ijavac.com/"/>
+  <link rel="canonical" href="http://ijavac.com/blog/2017/01/22/Spring框架结构/"/>
 
 
 
 
 
-  <title>Let's get started</title>
+  <title>Spring框架结构 | Let's get started</title>
   
 
 
@@ -144,8 +147,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -270,9 +272,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -302,9 +304,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/2017/01/22/Spring框架结构/" itemprop="url">Spring框架结构</a></h1>
+          <h1 class="post-title" itemprop="name headline">Spring框架结构</h1>
         
 
         <div class="post-meta">
@@ -336,6 +336,11 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
 
           
 
@@ -354,9 +359,7 @@
       
 
       
-        
-          
-            <p> Spring 框架是一个分层架构，它包含一系列的功能要素，并被分为大约20个模块。这些模块分为Core Container、Data Access/Integration、Web、AOP（Aspect Oriented Programming）、Instrumentation和测试部分，如目录中所带图所示：</p>
+        <p> Spring 框架是一个分层架构，它包含一系列的功能要素，并被分为大约20个模块。这些模块分为Core Container、Data Access/Integration、Web、AOP（Aspect Oriented Programming）、Instrumentation和测试部分，如目录中所带图所示：</p>
 <p><img src="http://p0c64gln7.bkt.clouddn.com/spring%E6%A1%86%E6%9E%B6%E7%BB%93%E6%9E%84.png" alt="Spring框架结构"></p>
 <p>Core Container ：</p>
 <pre><code>Core Container(核心容器):包含有Core、Beans、Context和Expression Language模块。
@@ -391,8 +394,6 @@ Instrumentation模块提供了class instrumentation支持和classloader实现，
 </code></pre><p>Test</p>
 <pre><code>Test模块支持使用JUnit和TestNG对Spring组件进行测试。
 </code></pre>
-          
-        
       
     </div>
     
@@ -402,19 +403,56 @@ Instrumentation模块提供了class instrumentation支持和classloader实现，
     
 
     
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/logo.jpg" alt="ijavaC 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/logo.jpg" alt="ijavaC 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
 
     
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/Spring/" rel="tag"># Spring</a>
+          
+        </div>
+      
+
+      
+      
+      
 
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -424,10 +462,11 @@ Instrumentation模块提供了class instrumentation支持和classloader实现，
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -435,6 +474,15 @@ Instrumentation模块提供了class instrumentation支持和classloader实现，
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMzQ0Ni8xMDAwMg=="></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -689,6 +737,10 @@ Instrumentation模块提供了class instrumentation支持和classloader实现，
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -717,6 +769,17 @@ Instrumentation模块提供了class instrumentation支持和classloader实现，
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
