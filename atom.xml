@@ -5,9 +5,9 @@
   <subtitle>Coding4Life</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://ijavac.com/"/>
+  <link href="http://www.ijavac.com/"/>
   <updated>2018-01-22T07:57:30.453Z</updated>
-  <id>http://ijavac.com/</id>
+  <id>http://www.ijavac.com/</id>
   
   <author>
     <name>ijavaC</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Spring框架结构</title>
-    <link href="http://ijavac.com//blog/2017/01/22/Spring%E6%A1%86%E6%9E%B6%E7%BB%93%E6%9E%84/"/>
-    <id>http://ijavac.com//blog/2017/01/22/Spring框架结构/</id>
+    <link href="http://www.ijavac.com//blog/2017/01/22/Spring%E6%A1%86%E6%9E%B6%E7%BB%93%E6%9E%84/"/>
+    <id>http://www.ijavac.com//blog/2017/01/22/Spring框架结构/</id>
     <published>2017-01-22T07:13:44.000Z</published>
     <updated>2018-01-22T07:57:30.453Z</updated>
     
@@ -32,12 +32,12 @@
     
     </summary>
     
-      <category term="Spring" scheme="http://ijavac.com/categories/Spring/"/>
+      <category term="Spring" scheme="http://www.ijavac.com/categories/Spring/"/>
     
     
-      <category term="Java" scheme="http://ijavac.com/tags/Java/"/>
+      <category term="Java" scheme="http://www.ijavac.com/tags/Java/"/>
     
-      <category term="Spring" scheme="http://ijavac.com/tags/Spring/"/>
+      <category term="Spring" scheme="http://www.ijavac.com/tags/Spring/"/>
     
   </entry>
   
