@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.ijavac.com/"/>
-  <updated>2018-01-22T07:57:30.453Z</updated>
+  <updated>2018-01-23T08:35:10.527Z</updated>
   <id>http://www.ijavac.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>httpTest</title>
+    <link href="http://www.ijavac.com//blog/2018/01/23/httpTest/"/>
+    <id>http://www.ijavac.com//blog/2018/01/23/httpTest/</id>
+    <published>2018-01-23T08:33:57.000Z</published>
+    <updated>2018-01-23T08:35:10.527Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="https://github.com/fishool/fishool.github.io/blob/master/images/apple-touch-icon-next.png" alt="justTest"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;img src=&quot;https://github.com/fishool/fishool.github.io/blob/master/images/apple-touch-icon-next.png&quot; alt=&quot;justTest&quot;&gt;&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Spring框架结构</title>
