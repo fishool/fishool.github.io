@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[CDN加速测试]]></title>
+    <url>%2F%2Fblog%2F2018%2F01%2F24%2FCDN%E5%8A%A0%E9%80%9F%E6%B5%8B%E8%AF%95%2F</url>
+    <content type="text"><![CDATA[cdn加速测试]]></content>
+      <categories>
+        <category>test</category>
+      </categories>
+      <tags>
+        <tag>test</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[cdnTest]]></title>
     <url>%2F%2Fblog%2F2018%2F01%2F24%2FcdnTest%2F</url>
     <content type="text"><![CDATA[cdn 加速优化测试]]></content>
