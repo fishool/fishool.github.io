@@ -88,7 +88,7 @@
 <meta property="og:description" content="第四天1  advisor  增强器   作用:筛选指定要拦截(要代理)的方法        默认情况下advice会拦截目标对象中的所有方法，advisor增强器可以进一步进行方法的筛选，筛选的方法就是我们的adivce需要拦截的方法。   指定为advisor的接口为:    public interface PointcutAdvisor {        Pointcut getPoint">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://gss2.bdstatic.com/-fo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=892cd34586d6277ffd1f3a6a49517455/b90e7bec54e736d12103cbf69a504fc2d562693f.jpg">
-<meta property="og:updated_time" content="2018-01-25T09:45:38.074Z">
+<meta property="og:updated_time" content="2018-01-26T06:19:03.773Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring aop 入门(三)">
 <meta name="twitter:description" content="第四天1  advisor  增强器   作用:筛选指定要拦截(要代理)的方法        默认情况下advice会拦截目标对象中的所有方法，advisor增强器可以进一步进行方法的筛选，筛选的方法就是我们的adivce需要拦截的方法。   指定为advisor的接口为:    public interface PointcutAdvisor {        Pointcut getPoint">
@@ -304,7 +304,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ijavaC">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/logo.jpg">
+      <meta itemprop="image" content="/images/logo.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -401,8 +401,8 @@ class=&quot;com.briup.aop.before.BeforeAdvice&quot;&gt;
 &lt;/bean&gt;
 </code></pre><p><img src="https://gss2.bdstatic.com/-fo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=892cd34586d6277ffd1f3a6a49517455/b90e7bec54e736d12103cbf69a504fc2d562693f.jpg" alt="面向切面"></p>
 <a id="more"></a>
-<pre><code>&lt;!-- 配置advisor 增强器--&gt;
-&lt;!-- 作用:筛选要拦截(要代理)的方法 --&gt;
+   <!-- 配置advisor 增强器-->
+<pre><code>&lt;!-- 作用:筛选要拦截(要代理)的方法 --&gt;
 &lt;bean name=&quot;advisor&quot; 
 class=&quot;org.springframework.aop.support.RegexpMethodPointcutAdvisor&quot;&gt;
     &lt;!-- 注入advice 表示增强器要在哪一个advice起作用--&gt;
@@ -682,67 +682,13 @@ class=&quot;com.briup.aop.service.AccountServiceImpl&quot;&gt;
 &lt;/aop:config&gt;
 
 注意:&lt;aop:config proxy-target-class=&quot;true&quot;&gt; 如果这样配置则是强制使用CGLIB方式进行代理
-</code></pre><p>6  使用注解配置AOP:其实就是在上面的类XmlHandler中加入上注解然后去掉xml中的aop标签配置,这里把类改名为AnnotationHandler,<br>   例子:<br>    @Component<br>    @Aspect<br>    public class AnnotationHandler {<br>        /*</p>
-<pre><code>     * 在一个方法上面加上注解来定义切入点
-     * 这个切入点的名字就是这个方法的名字
-     * 这个方法本身不需要有什么作用
-     * 这个方法的意义就是:给这个 @Pointcut注解一个可以书写的地方
-     * 因为注解只能写在方法、属性、类的上面,并且方法名作为切入点的名字
-     * */
-    @Pointcut(&quot;execution(public * com.briup.aop.service..*.*(..))&quot;)
-    public void myPointCut(){}
+</code></pre><p>6  使用注解配置AOP:其实就是在上面的类XmlHandler中加入上注解然后去掉xml中的aop标签配置,这里把类改名为AnnotationHandler,<br>   例子:<br>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">@Component   </span><br><span class="line">@Aspect     </span><br><span class="line">public class AnnotationHandler &#123;   </span><br><span class="line"> /*</span><br><span class="line">  * 在一个方法上面加上注解来定义切入点</span><br><span class="line">  * 这个切入点的名字就是这个方法的名字</span><br><span class="line">  * 这个方法本身不需要有什么作用</span><br><span class="line">  * 这个方法的意义就是:给这个 @Pointcut注解一个可以书写的地方</span><br><span class="line">  * 因为注解只能写在方法、属性、类的上面,并且方法名作为切入点的名字</span><br><span class="line">  * */</span><br><span class="line"> @Pointcut(&quot;execution(public * com.briup.aop.service..*.*(..))&quot;)</span><br><span class="line"> public void myPointCut()&#123;&#125;</span><br><span class="line"> </span><br><span class="line"> //注:这里面的所有方法的JoinPoint类型对象都可以去掉不写</span><br><span class="line"> @Before(&quot;myPointCut()&quot;)</span><br><span class="line"> public void beforeTest(JoinPoint p)&#123;</span><br><span class="line">  System.out.println(p.getSignature().getName()+&quot; before...&quot;);</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> /*</span><br><span class="line">  * @After和@AfterReturning</span><br><span class="line">  * </span><br><span class="line">  * @After标注的方法会在切入点上的方法结束后被调用(不管是不是正常的结束).</span><br><span class="line">  * @AfterReturning标注的方法只会在切入点上的方法正常结束后才被调用.</span><br><span class="line">  * */</span><br><span class="line"> @After(&quot;myPointCut()&quot;)</span><br><span class="line"> public void afterTest(JoinPoint p)&#123;</span><br><span class="line">  System.out.println(p.getSignature().getName()+&quot; after...&quot;);</span><br><span class="line"> &#125;</span><br><span class="line"> @AfterReturning(&quot;myPointCut()&quot;)</span><br><span class="line"> public void afterReturningTest(JoinPoint p)&#123;</span><br><span class="line">  </span><br><span class="line">  System.out.println(p.getSignature().getName()+&quot; afterReturning&quot;);</span><br><span class="line">  </span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> @Around(&quot;myPointCut()&quot;)</span><br><span class="line"> public Object aroundTest(ProceedingJoinPoint pjp)throws Throwable&#123;</span><br><span class="line">  System.out.println(pjp.getSignature().getName()+&quot; is start..&quot;);</span><br><span class="line">  //调用连接点的方法去执行</span><br><span class="line">  Object obj = pjp.proceed();</span><br><span class="line">  System.out.println(pjp.getSignature().getName()+&quot; is end..&quot;);</span><br><span class="line">  return obj;</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> //在切入点中的方法执行期间抛出异常的时候,会调用这个 @AfterThrowing注解所标注的方法</span><br><span class="line"> @AfterThrowing(value=&quot;myPointCut()&quot;,throwing=&quot;ex&quot;)     </span><br><span class="line"> public void throwingTest(JoinPoint p,Exception ex)&#123;</span><br><span class="line">  System.out.println(p.getSignature().getName()+&quot; is throwing...&quot;+ex.getMessage());</span><br><span class="line">  </span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>xml配置:注意给例子中使用的其他的类上面也使用注解</p>
+<p><aop:aspectj-autoproxy></aop:aspectj-autoproxy></p>
+<context:component-scan base-package="com.briup.aop">
 
-    //注:这里面的所有方法的JoinPoint类型对象都可以去掉不写
-    @Before(&quot;myPointCut()&quot;)
-    public void beforeTest(JoinPoint p){
-        System.out.println(p.getSignature().getName()+&quot; before...&quot;);
-    }
-
-
-    /*
-     * @After和@AfterReturning
-     * 
-     * @After标注的方法会在切入点上的方法结束后被调用(不管是不是正常的结束).
-     * @AfterReturning标注的方法只会在切入点上的方法正常结束后才被调用.
-     * */
-    @After(&quot;myPointCut()&quot;)
-    public void afterTest(JoinPoint p){
-        System.out.println(p.getSignature().getName()+&quot; after...&quot;);
-    }
-    @AfterReturning(&quot;myPointCut()&quot;)
-    public void afterReturningTest(JoinPoint p){
-
-        System.out.println(p.getSignature().getName()+&quot; afterReturning&quot;);
-
-    }
-
-    @Around(&quot;myPointCut()&quot;)
-    public Object aroundTest(ProceedingJoinPoint pjp)throws Throwable{
-        System.out.println(pjp.getSignature().getName()+&quot; is start..&quot;);
-        //调用连接点的方法去执行
-        Object obj = pjp.proceed();
-        System.out.println(pjp.getSignature().getName()+&quot; is end..&quot;);
-        return obj;
-    }
-
-
-
-    //在切入点中的方法执行期间抛出异常的时候,会调用这个 @AfterThrowing注解所标注的方法
-    @AfterThrowing(value=&quot;myPointCut()&quot;,throwing=&quot;ex&quot;)
-    public void throwingTest(JoinPoint p,Exception ex){
-        System.out.println(p.getSignature().getName()+&quot; is throwing...&quot;+ex.getMessage());
-
-    }
-
-
-}
-
-xml配置:注意给例子中使用的其他的类上面也使用注解
-&lt;aop:aspectj-autoproxy/&gt;
-&lt;context:component-scan base-package=&quot;com.briup.aop&quot;/&gt;
-
-注意:&lt;aop:aspectj-autoproxy proxy-target-class=&quot;true&quot;/&gt;这样配置则是强制使用CGLIB进行代理
-</code></pre>
+<p>注意:<aop:aspectj-autoproxy proxy-target-class="true"><br>这样配置则是强制使用CGLIB进行代理</aop:aspectj-autoproxy></p>
+</context:component-scan>
       
     </div>
     
@@ -874,7 +820,7 @@ xml配置:注意给例子中使用的其他的类上面也使用注解
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image"
-                src="/images/logo.jpg"
+                src="/images/logo.gif"
                 alt="ijavaC" />
             
               <p class="site-author-name" itemprop="name">ijavaC</p>
