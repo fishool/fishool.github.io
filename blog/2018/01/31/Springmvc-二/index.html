@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java,Spring," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="DispatcherServlet在web.xml中的映射路径123456789&amp;lt;servlet&amp;gt;    &amp;lt;servlet-name&amp;gt;SpringMVC&amp;lt;/servlet-name&amp;gt;    &amp;lt;servlet-class&amp;gt;org.springframework.web.servlet.DispatcherServlet&amp;lt;/servlet-clas">
+<meta name="keywords" content="Java,Spring">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Springmvc(二)">
+<meta property="og:url" content="http://www.ijavac.com/blog/2018/01/31/Springmvc-二/index.html">
+<meta property="og:site_name" content="Let&#39;s get started">
+<meta property="og:description" content="DispatcherServlet在web.xml中的映射路径123456789&amp;lt;servlet&amp;gt;    &amp;lt;servlet-name&amp;gt;SpringMVC&amp;lt;/servlet-name&amp;gt;    &amp;lt;servlet-class&amp;gt;org.springframework.web.servlet.DispatcherServlet&amp;lt;/servlet-clas">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/1173487/201707/1173487-20170723004524715-699240325.png">
+<meta property="og:updated_time" content="2018-01-31T08:41:07.793Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Springmvc(二)">
+<meta name="twitter:description" content="DispatcherServlet在web.xml中的映射路径123456789&amp;lt;servlet&amp;gt;    &amp;lt;servlet-name&amp;gt;SpringMVC&amp;lt;/servlet-name&amp;gt;    &amp;lt;servlet-class&amp;gt;org.springframework.web.servlet.DispatcherServlet&amp;lt;/servlet-clas">
+<meta name="twitter:image" content="https://images2015.cnblogs.com/blog/1173487/201707/1173487-20170723004524715-699240325.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.ijavac.com/blog/2018/01/31/Springmvc-二/"/>
+
+
+
+
+
+  <title>Springmvc(二) | Let's get started</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Let's get started</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Coding4Life</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.ijavac.com/blog/2018/01/31/Springmvc-二/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ijavaC">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Let's get started">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Springmvc(二)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-31T16:40:27+08:00">
+                2018-01-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="DispatcherServlet在web-xml中的映射路径"><a href="#DispatcherServlet在web-xml中的映射路径" class="headerlink" title="DispatcherServlet在web.xml中的映射路径"></a>DispatcherServlet在web.xml中的映射路径</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;servlet&gt;</span><br><span class="line">    &lt;servlet-name&gt;SpringMVC&lt;/servlet-name&gt;</span><br><span class="line">    &lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;</span><br><span class="line">    &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;</span><br><span class="line">&lt;/servlet&gt;</span><br><span class="line">&lt;servlet-mapping&gt;</span><br><span class="line">    &lt;servlet-name&gt;SpringMVC&lt;/servlet-name&gt;</span><br><span class="line">    &lt;url-pattern&gt;/&lt;/url-pattern&gt;</span><br><span class="line">&lt;/servlet-mapping&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="https://images2015.cnblogs.com/blog/1173487/201707/1173487-20170723004524715-699240325.png" alt="Springmvc"><br><a id="more"></a></p>
+<h2 id="请求拦截"><a href="#请求拦截" class="headerlink" title="请求拦截"></a>请求拦截</h2><h3 id="拦截所有请求"><a href="#拦截所有请求" class="headerlink" title="拦截所有请求"></a>拦截所有请求</h3><p>/  拦截除jsp以外的 所有资源  (包含css js jpg)<br>此处需要特别强调的是 <url-pattern>/</url-pattern>使用的是/,而不是/*,如果使用/*,那么请求时可以通过DispatcherServlet转发到相应的Controller中,但是Controller返回的时候,如返回的jsp还会再次被拦截,这样导致404错误,即访问不到jsp。    </p>
+<p>2)自定义拦截请求<br>拦截<em>.do、</em>.html、*.action, 例如/user/add.do<br>这是最传统的方式,最简单也最实用。不会导致静态文件（jpg,js,css）被拦截。    </p>
+<p>拦截/,例如：/user/add<br>可以实现REST风格的访问<br>弊端：会导致静态文件（jpg,js,css）被拦截后不能正常显示。</p>
+<p>拦截/*,这是一个错误的方式,请求可以走到Controller中,但跳转到jsp时再次被拦截,不能访问到jsp。</p>
+<h3 id="静态资源的访问-如jpg-js-css"><a href="#静态资源的访问-如jpg-js-css" class="headerlink" title="静态资源的访问,如jpg,js,css"></a>静态资源的访问,如jpg,js,css</h3><p>如果DispatcherServlet拦截”*.do”这样的有后缀的URL,就不存在访问不到静态资源的问题。<br>如果DispatcherServlet拦截”/“,为了实现REST风格,拦截了所有的请求,那么同时对*.js,*.jpg等静态文件的访问也就被拦截了。   </p>
+<pre><code>例如:
+&lt;link href=&quot;css/hello.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;/&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;js/hello.js&quot;&gt;&lt;/script&gt;
+&lt;img alt=&quot;none&quot; src=&quot;images/logo.png&quot;&gt;   
+
+解决方式一：利用Tomcat的defaultServlet来处理静态文件
+&lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;default&lt;/servlet-name&gt;
+    &lt;url-pattern&gt;*.jpg&lt;/url-pattern&gt;
+    &lt;url-pattern&gt;*.css&lt;/url-pattern&gt;
+    &lt;url-pattern&gt;*.js&lt;/url-pattern&gt;  
+ &lt;/servlet-mapping&gt;
+
+
+
+特点：1.要配置多个，每种文件配置一个。
+　　  2.要写在DispatcherServlet的前面(和tomcat版本有关),
+　　  让defaultServlet先拦截请求,    这样请求就不会进入Spring了
+　　  3. 高性能。
+
+  在springmvc.xml 中配置静态资源放行
+
+解决方式二: 使用&lt;mvc:resources&gt;标签,例如:
+&lt;mvc:resources mapping=&quot;/images/**&quot; location=&quot;/images/&quot;/&gt; 
+&lt;mvc:resources mapping=&quot;/js/**&quot; location=&quot;/js/&quot;/&gt; 
+&lt;mvc:resources mapping=&quot;/css/**&quot; location=&quot;/css/&quot;/&gt;
+
+mapping： 映射
+两个*,表示映射指定路径下所有的URL,包括子路径
+location：本地资源路径
+
+这样如果有访问/images或者/js或者/css路径下面的资源的时候,spring就不会拦截了
+
+
+解决方式三: 使用&lt;mvc:default-servlet-handler/&gt;标签
+在spring配置文件中加入此标签配置即可
+</code></pre><h3 id="spring提供的编码过滤器"><a href="#spring提供的编码过滤器" class="headerlink" title="spring提供的编码过滤器"></a>spring提供的编码过滤器</h3><pre><code>查看这个过滤器类源码便可知这里所传的俩个参数的作用
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;filter&gt;</span><br><span class="line">    &lt;filter-name&gt;CharacterEncodingFilter&lt;/filter-name&gt;</span><br><span class="line">    &lt;filter-class&gt;org.springframework.web.filter.CharacterEncodingFilter&lt;/filter-class&gt;</span><br><span class="line">    &lt;init-param&gt;</span><br><span class="line">        &lt;param-name&gt;encoding&lt;/param-name&gt;</span><br><span class="line">        &lt;param-value&gt;UTF-8&lt;/param-value&gt;</span><br><span class="line">    &lt;/init-param&gt;</span><br><span class="line">    &lt;init-param&gt;</span><br><span class="line">        &lt;param-name&gt;forceEncoding&lt;/param-name&gt;</span><br><span class="line">        &lt;param-value&gt;true&lt;/param-value&gt;</span><br><span class="line">    &lt;/init-param&gt;</span><br><span class="line">&lt;/filter&gt;</span><br><span class="line">&lt;filter-mapping&gt;</span><br><span class="line">    &lt;filter-name&gt;CharacterEncodingFilter&lt;/filter-name&gt;</span><br><span class="line">    &lt;url-pattern&gt;/*&lt;/url-pattern&gt;</span><br><span class="line">&lt;/filter-mapping&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="Controller接口及其实现类"><a href="#Controller接口及其实现类" class="headerlink" title="Controller接口及其实现类"></a>Controller接口及其实现类</h2><p>Controller是控制器接口,此处只有一个方法handleRequest,用于进行请求的功能处理,处理完请求后返回ModelAndView(Model模型数据部分 和 View视图部分)。</p>
+<p>如果想直接在处理器/控制器里使用response向客户端写回数据,可以通过返回null来告诉DispatcherServlet我们已经写出响应了,不需要它进行视图解析</p>
+<p>Spring默认提供了一些Controller接口的实现以方便我们使用,在Eclipse中选择Controller接口然后右键open type Hierarchy即可查看改接口的实现类,每个实现类都有自己特殊的功能,这里以实现类AbstractController为例简单介绍下。<br>查看AbstractController类中代码可知,我们写一个Controller的时候可以继承AbstractController然后实现handleRequestInternal方法即可。</p>
+<p>提供了【可选】的会话的串行化访问功能,例如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">//即同一会话,线程同步</span><br><span class="line">    public class HelloWorldController extends AbstractController&#123;</span><br><span class="line">        @Override</span><br><span class="line">        protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response)</span><br><span class="line">                throws Exception &#123;</span><br><span class="line">            String name = request.getParameter(&quot;name&quot;);</span><br><span class="line">            //ModelAndView对象中包括了要返回的逻辑视图,以及数据模型</span><br><span class="line">            ModelAndView mv = new ModelAndView();</span><br><span class="line">            //设置视图名称,可以是字符串 也可以是视图对象</span><br><span class="line">            mv.setViewName(&quot;hello&quot;);</span><br><span class="line">            //设置数据模型</span><br><span class="line">            mv.addObject(&quot;name&quot;, name);</span><br><span class="line"></span><br><span class="line">            return mv;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &lt;bean name=&quot;/hello&quot; class=&quot;com.briup.web.controller.HelloWorldController&quot;&gt;</span><br><span class="line">        &lt;property name=&quot;synchronizeOnSession&quot; value=&quot;true&quot;&gt;&lt;/property&gt;</span><br><span class="line">    &lt;/bean&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    直接通过response写响应,例如:</span><br><span class="line">    public class HelloWorldController extends AbstractController&#123;</span><br><span class="line">        @Override</span><br><span class="line">        protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response)</span><br><span class="line">                throws Exception &#123;</span><br><span class="line"></span><br><span class="line">            response.getWriter().write(&quot;Hello World!!&quot;);       </span><br><span class="line">            //如果想直接在该处理器/控制器写响应 可以通过返回null告诉DispatcherServlet自己已经写出响应了,不需要它进行视图解析</span><br><span class="line"></span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    强制请求方法类型,例如:</span><br><span class="line">    //只支持post和get请求</span><br><span class="line">    &lt;bean name=&quot;/hello&quot; class=&quot;com.briup.web.controller.HelloWorldController&quot;&gt;</span><br><span class="line">        &lt;property name=&quot;supportedMethods&quot; value=&quot;POST,GET&quot;&gt;&lt;/property&gt;</span><br><span class="line">    &lt;/bean&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    当前请求的session前置条件检查,如果当前请求无session将抛出HttpSessionRequiredException异常,例如:</span><br><span class="line">    //在进入该控制器时,一定要有session存在,否则抛出HttpSessionRequiredException异常。</span><br><span class="line"></span><br><span class="line">    &lt;bean name=&quot;/hello&quot; class=&quot;com.briup.web.controller.HelloWorldController&quot;&gt;</span><br><span class="line">        &lt;property name=&quot;requireSession&quot; value=&quot;true&quot;/&gt;</span><br><span class="line">    &lt;/bean&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="自定义适配器"><a href="#自定义适配器" class="headerlink" title="自定义适配器"></a>自定义适配器</h2><pre><code>一般情况下,springMVCSimpleControllerHandlerAdapter会是我们常用的适配器,也是SpringMVC中默认的适配器,该适配器中的主要代码如下:
+public class SimpleControllerHandlerAdapter implements HandlerAdapter {
+    public boolean supports(Object handler) {
+        return (handler instanceof Controller);
+    }
+    public ModelAndView handle(HttpServletRequest request, HttpServletResponse response, Object handler)
+            throws Exception {
+
+        return ((Controller) handler).handleRequest(request, response);
+    }
+}
+从代码中可以看出,它首先会判断我们的handler是否实现了Controller接口,如果实现了,那么会调用Controller接口中的handleRequest方法
+
+那么根据这种方式能看出,我们也可以有自己的适配器的实现,
+那么就可以让任意类成为SpringMVC中的handler了,
+无论我们的类是否实现了Controller接口
+例如:
+    自己的接口:
+    public interface MyController {
+        public ModelAndView handler_test(HttpServletRequest request, HttpServletResponse response)throws Exception;
+    }
+    自己的适配器:
+    public class MyHandlerAdapter implements HandlerAdapter{
+        @Override
+        public boolean supports(Object handler) {
+            return (handler instanceof MyHandler);
+        }
+
+        @Override
+        public ModelAndView handle(HttpServletRequest request, HttpServletResponse response, Object handler)
+                throws Exception {
+            return ((MyHandler)handler).handler_test(request, response);
+        }
+
+        @Override
+        public long getLastModified(HttpServletRequest request, Object handler) {
+            return -1L;
+        }
+
+    }
+
+    自己的hander:(就是我们之前写的Controller)
+    public class TestController implements MyController{
+        @Override
+        public ModelAndView handler_test(HttpServletRequest request, HttpServletResponse response) throws Exception {
+            String name = request.getParameter(&quot;name&quot;);
+            ModelAndView mv = new ModelAndView(&quot;hello&quot;);
+            mv.addObject(&quot;name&quot;, name);
+            return mv;
+        }
+    }
+</code></pre><h2 id="处理器拦截器"><a href="#处理器拦截器" class="headerlink" title="处理器拦截器"></a>处理器拦截器</h2><p>SpringMVC的处理器拦截器类似于Servlet开发中最后在spring的配置中把我       们的适配器进行配置即可正常使用的过滤器Filter,用于对处理器进行预处理和后处理。   </p>
+<h3 id="常见应用场景"><a href="#常见应用场景" class="headerlink" title="常见应用场景"></a>常见应用场景</h3><p>1、日志记录<br>        2、权限检查<br>        3、性能监控<br>        4、通用行为 例如读取用户cookie<br>        5、OpenSessionInView     例如在Hibernate中,在进入处理器前打开Session,在完成后关闭Session。<br>        等      </p>
+<h3 id="拦截器接口"><a href="#拦截器接口" class="headerlink" title="拦截器接口"></a>拦截器接口</h3><pre><code>public interface HandlerInterceptor {
+
+    boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)throws Exception;
+
+    void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView)throws Exception;
+
+    void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)throws Exception;
+}
+
+preHandle方法
+    预处理回调方法,实现处理器的预处理,第三个参数为的处理器
+    (本次请求要访问的那个Controller)
+    返回值:true表示继续流程(如调用下一个拦截器或处理器)
+            false表示流程中断(如登录检查失败),不会继续调用
+            其他的拦截器或处理器,此时我们需要通过response来产生响应
+
+postHandle方法
+    后处理回调方法,实现处理器的后处理(但在渲染视图之前),此时我们可以通过modelAndView
+    对模型数据进行处理或对视图进行处理,modelAndView也可能为null。   
+
+afterCompletion方法
+    整个请求处理完毕回调方法,即在视图渲染完毕时回调
+</code></pre><h3 id="拦截器适配器"><a href="#拦截器适配器" class="headerlink" title="拦截器适配器"></a>拦截器适配器</h3><p>有时候我们可能只需要实现三个回调方法中的某一个,如果实现HandlerInterceptor       接口的话,三个方法必须实现,不管你需不需要,此时spring       提供了一个HandlerInterceptorAdapter         适配器(适配器模式),允许我们只实现需要的回调方法。<br> 在HandlerInterceptorAdapter中,对HandlerInterceptor         接口中的三个方法都进行了空实现,其中preHandle方法的返回值,默认是true         </p>
+<h3 id="测试一个拦截器"><a href="#测试一个拦截器" class="headerlink" title="测试一个拦截器"></a>测试一个拦截器</h3><pre><code>public class MyInterceptor1 extends HandlerInterceptorAdapter{
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+            throws Exception {
+        System.out.println(&quot;MyInterceptor1 preHandle&quot;);
+        return true;
+    }
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
+            ModelAndView modelAndView) throws Exception {
+        System.out.println(&quot;MyInterceptor1 postHandle&quot;);
+    }
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
+            throws Exception {
+        System.out.println(&quot;MyInterceptor1 afterCompletion&quot;);
+    }
+}
+
+配置文件:
+&lt;bean name=&quot;handlerInterceptor1&quot; class=&quot;com.briup.web.interceptor.MyInterceptor1&quot;/&gt;
+
+&lt;bean class=&quot;org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping&quot;&gt;
+    &lt;property name=&quot;interceptors&quot;&gt;
+        &lt;list&gt;
+            &lt;ref bean=&quot;handlerInterceptor1&quot;/&gt;
+        &lt;/list&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;       
+
+访问一个测试的Controller查看结果:
+MyInterceptor1 preHandle
+TestController执行
+MyInterceptor1 postHandle
+MyInterceptor1 afterCompletion
+</code></pre><h3 id="测试俩个拦截器"><a href="#测试俩个拦截器" class="headerlink" title="测试俩个拦截器"></a>测试俩个拦截器</h3><p>俩个拦截器的代码和上面类似,只是每个输出的内容不同<br>配置文件:</p>
+<pre><code>&lt;bean name=&quot;handlerInterceptor1&quot;    class=&quot;com.briup.web.interceptor.MyInterceptor1&quot;/&gt;   
+&lt;bean name=&quot;handlerInterceptor2&quot; class=&quot;com.briup.web.interceptor.MyInterceptor1&quot;/&gt;
+
+&lt;bean class=&quot;org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping&quot;&gt;
+    &lt;property name=&quot;interceptors&quot;&gt;
+        &lt;list&gt;
+            &lt;ref bean=&quot;handlerInterceptor1&quot;/&gt;
+            &lt;ref bean=&quot;handlerInterceptor2&quot;/&gt;
+        &lt;/list&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+
+访问一个测试的Controller查看结果:
+MyInterceptor1 preHandle
+MyInterceptor2 preHandle
+TestController执行
+MyInterceptor2 postHandle
+MyInterceptor1 postHandle
+MyInterceptor2 afterCompletion
+MyInterceptor1 afterCompletion
+
+注意:&lt;list&gt;标签中引用拦截器的顺序会影响结果输出的顺序
+</code></pre><h3 id="如果Controller等采用的注解配置-那么拦截器需要mvc标签进行配置"><a href="#如果Controller等采用的注解配置-那么拦截器需要mvc标签进行配置" class="headerlink" title="如果Controller等采用的注解配置,那么拦截器需要mvc标签进行配置"></a>如果Controller等采用的注解配置,那么拦截器需要mvc标签进行配置</h3><pre><code>注意:每个&lt;mvc:interceptor&gt;只能配置一个拦截器
+&lt;mvc:interceptors&gt;
+    &lt;mvc:interceptor&gt;
+        &lt;mvc:mapping path=&quot;/**&quot;/&gt;
+        &lt;ref bean=&quot;handlerInterceptor1&quot;/&gt;
+    &lt;/mvc:interceptor&gt;
+&lt;/mvc:interceptors&gt;
+
+例如1: 注意/*和/**的区别
+&lt;mvc:interceptors&gt;
+    &lt;!-- 下面所有的mvc映射路径都会被这个拦截器拦截 --&gt;
+    &lt;bean class=&quot;com.briup.web.interceptor.MyInterceptor1&quot; /&gt;
+
+    &lt;mvc:interceptor&gt;
+        &lt;!--过滤这些请求--&gt;
+        &lt;mvc:mapping path=&quot;/**&quot;/&gt;
+        &lt;!--除了这些请求--&gt;
+        &lt;mvc:exclude-mapping path=&quot;/admin/**&quot;/&gt;
+        &lt;bean class=&quot;com.briup.web.interceptor.MyInterceptor2&quot; /&gt;
+    &lt;/mvc:interceptor&gt;
+    &lt;mvc:interceptor&gt;
+        &lt;mvc:mapping path=&quot;/secure/*&quot;/&gt;
+        &lt;bean class=&quot;com.briup.web.interceptor.MyInterceptor3&quot; /&gt;
+    &lt;/mvc:interceptor&gt;
+</code></pre><h3 id="拦截器是单例"><a href="#拦截器是单例" class="headerlink" title="拦截器是单例"></a>拦截器是单例</h3><p>因此不管多少用户请求多少次都只有一个拦截器实现,即线程不安全。<br>        所以在必要时可以在拦截器中使用ThreadLocal,它是和线程绑定,一个线程一个ThreadLocal,<br>        A 线程的ThreadLocal只能看到A线程的ThreadLocal,不能看到B线程的ThreadLocal。</p>
+<h3 id="记录执行Controller所用时间"><a href="#记录执行Controller所用时间" class="headerlink" title="记录执行Controller所用时间"></a>记录执行Controller所用时间</h3><pre><code>public class TimeInterceptor extends HandlerInterceptorAdapter{
+    //拦截器是单例,不是线程安全的,所以这里使用ThreadLocal
+    private ThreadLocal&lt;Long&gt; local = new ThreadLocal&lt;&gt;();
+
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+            throws Exception {
+        long start = System.currentTimeMillis();
+        local.set(start);
+        return true;
+    }
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
+            throws Exception {
+        long end = System.currentTimeMillis();
+        System.out.println(&quot;共耗时:&quot;+(end-local.get()));
+    }
+}
+</code></pre><p>配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;mvc:interceptor&gt;</span><br><span class="line"></span><br><span class="line">    //    /*   匹配根目录 下所有文件   /** 匹配根目录及其子目录 下所有文件</span><br><span class="line">    &lt;mvc:mapping path=&quot;/**&quot;/&gt;</span><br><span class="line">    &lt;bean class=&quot;com.briup.web.interceptor.TimeInterceptor&quot; /&gt;</span><br><span class="line"></span><br><span class="line">&lt;/mvc:interceptor&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="登录检查"><a href="#登录检查" class="headerlink" title="登录检查"></a>登录检查</h3><pre><code>    public class LoginInterceptor extends HandlerInterceptorAdapter{
+        @Override
+        public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+                throws Exception {
+            //请求到登录页面放行
+            if(request.getServletPath().startsWith(&quot;/login&quot;)) {
+                return true;
+            }
+
+            //如果用户已经登录放行
+            if(request.getSession().getAttribute(&quot;username&quot;) != null) {
+                return true;
+            }
+
+            //重定向到登录页面
+            response.sendRedirect(request.getContextPath() + &quot;/login&quot;);
+
+            return false;
+        }
+    }
+
+
+注意:推荐能使用servlet规范中的过滤器Filter实现的功能就用Filter实现,因为HandlerInteceptor只有在SpringWebMVC环境下才能使用,因此Filter是最通用的、最先应该使用的。
+</code></pre><h2 id="基于注解的SpringMVC"><a href="#基于注解的SpringMVC" class="headerlink" title="基于注解的SpringMVC"></a>基于注解的SpringMVC</h2><h3 id="用于支持注解的配置"><a href="#用于支持注解的配置" class="headerlink" title="用于支持注解的配置"></a>用于支持注解的配置</h3><p> 使用基于注解的配置可以省略很多操作,更方便。我们之前所看到的所有的xml配置,如果替换成基于注解只需要在spring的xml文件中做如下配置:</p>
+<mvc:annotation-driven>
+
+<p>在Spring中,<br>处理器类可以使用   @Controller注解<br>业务逻辑层可以使用 @Service注解<br>数据持久层可以使用 @Repository注解</p>
+<p>如果在处理器上使用 @Controller注解,那么还需要在配置文件中指定哪个包下面的类使用了该注解:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;context:component-scan base-package=&quot;com.briup.web.controller&quot;&gt;&lt;/context:component-scan&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="基于注解的Controller"><a href="#基于注解的Controller" class="headerlink" title="基于注解的Controller"></a>基于注解的Controller</h2><p>使用注解后,就不需要再实现特定的接口,任意一个javaBean对象都可以当做处理器对象,对象中任意一个方法都可以作为处理器方法。<br>只需在类上加上 @Controller注解<br>方法上加上 @RequestMapping注解 即可<br>例如:<br>web.xml中:</p>
+<pre><code>&lt;servlet&gt;
+    &lt;servlet-name&gt;SpringMVC&lt;/servlet-name&gt;
+    &lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;
+    &lt;init-param&gt;
+        &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;
+        &lt;param-value&gt;classpath:spring-web-mvc.xml&lt;/param-value&gt;
+    &lt;/init-param&gt;
+    &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;
+&lt;/servlet&gt;
+&lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;SpringMVC&lt;/servlet-name&gt;
+    &lt;url-pattern&gt;/&lt;/url-pattern&gt;
+&lt;/servlet-mapping&gt;
+</code></pre><p>src下面的spring-web-mvc.xml中:</p>
+<pre><code>&lt;mvc:annotation-driven/&gt;
+&lt;context:component-scan base-package=&quot;com.briup.web.controller&quot;&gt;&lt;/context:component-scan&gt;
+
+&lt;bean class=&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot;&gt; 
+    &lt;property name=&quot;viewClass&quot; value=&quot;org.springframework.web.servlet.view.JstlView&quot;/&gt; 
+    &lt;property name=&quot;prefix&quot; value=&quot;/WEB-INF/jsp/&quot;/&gt; 
+    &lt;property name=&quot;suffix&quot; value=&quot;.jsp&quot;/&gt; 
+&lt;/bean&gt;
+</code></pre><p>自定义的Controller中:</p>
+<pre><code>@Controller
+public class HomeController {
+    @RequestMapping(&quot;/home&quot;)
+    public ModelAndView home(){
+        ModelAndView mv = new ModelAndView(&quot;index&quot;);
+        return mv;
+    }
+}
+</code></pre><p>如上代码,使用 @Controller表明HomeController类是一个处理器类,<br>通过 @RequestMapping(“/home”)表明当url请求名为/home时,调用home方法执行处理,<br>当处理完成之后返回ModelAndView对象。因为在spring-web-mvc.xml中配置了视图解析器的前缀和后缀,所以最后视图home.jsp被返回</p>
+<h2 id="基于注解的Controller的返回值"><a href="#基于注解的Controller的返回值" class="headerlink" title="基于注解的Controller的返回值"></a>基于注解的Controller的返回值</h2><h3 id="返回ModelAndView-和之前一样"><a href="#返回ModelAndView-和之前一样" class="headerlink" title="返回ModelAndView,和之前一样"></a>返回ModelAndView,和之前一样</h3><h3 id="返回String-表示跳转的逻辑视图名字-模型可以通过参数传过来"><a href="#返回String-表示跳转的逻辑视图名字-模型可以通过参数传过来" class="headerlink" title="返回String,表示跳转的逻辑视图名字,模型可以通过参数传过来"></a>返回String,表示跳转的逻辑视图名字,模型可以通过参数传过来</h3><pre><code>@Controller
+public class HomeController {
+    @RequestMapping(&quot;/home&quot;)
+    public String home(Model model){
+        model.addAttribute(&quot;msg&quot;, &quot;hello world&quot;);
+        return &quot;index&quot;;
+    }
+}
+</code></pre><h3 id="声明返回类型为void"><a href="#声明返回类型为void" class="headerlink" title="声明返回类型为void"></a>声明返回类型为void</h3><pre><code>可以通过参数获取request和response，分别使用服务器内部跳转和重定向，自己来决定要跳转的位置。
+@Controller
+public class HomeController {
+    @RequestMapping(&quot;/home&quot;)
+    public void home(HttpServletRequest request,HttpServletResponse response){
+        String username = request.getParameter(&quot;username&quot;);
+        response.setContentType(&quot;text/html;charset=utf-8&quot;);
+        response.getWriter().write(&quot;hello world! &quot;+username);
+        //或者使用servlet的方式进行跳转/重定向
+
+    }
+}
+</code></pre></mvc:annotation-driven>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>o(╥﹏╥)o扫个码再走</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/weichat.jpg" alt="ijavaC 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/alipay.jpg" alt="ijavaC 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/Spring/" rel="tag"># Spring</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2018/01/30/Springmvc入门-一/" rel="next" title="Springmvc入门(一)">
+                <i class="fa fa-chevron-left"></i> Springmvc入门(一)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2018/02/01/Springmvc-三/" rel="prev" title="Springmvc (三)">
+                Springmvc (三) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMzQ0Ni8xMDAwMg=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/logo.gif"
+                alt="ijavaC" />
+            
+              <p class="site-author-name" itemprop="name">ijavaC</p>
+              <p class="site-description motion-element" itemprop="description">ijavacs@gmail.com</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/fishool" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://bilibili.com/" title="哔哩哔哩" target="_blank">哔哩哔哩</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#DispatcherServlet在web-xml中的映射路径"><span class="nav-number">1.</span> <span class="nav-text">DispatcherServlet在web.xml中的映射路径</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#请求拦截"><span class="nav-number"></span> <span class="nav-text">请求拦截</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#拦截所有请求"><span class="nav-number">1.</span> <span class="nav-text">拦截所有请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#静态资源的访问-如jpg-js-css"><span class="nav-number">2.</span> <span class="nav-text">静态资源的访问,如jpg,js,css</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#spring提供的编码过滤器"><span class="nav-number">3.</span> <span class="nav-text">spring提供的编码过滤器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Controller接口及其实现类"><span class="nav-number"></span> <span class="nav-text">Controller接口及其实现类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义适配器"><span class="nav-number"></span> <span class="nav-text">自定义适配器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#处理器拦截器"><span class="nav-number"></span> <span class="nav-text">处理器拦截器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见应用场景"><span class="nav-number">1.</span> <span class="nav-text">常见应用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拦截器接口"><span class="nav-number">2.</span> <span class="nav-text">拦截器接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拦截器适配器"><span class="nav-number">3.</span> <span class="nav-text">拦截器适配器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试一个拦截器"><span class="nav-number">4.</span> <span class="nav-text">测试一个拦截器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试俩个拦截器"><span class="nav-number">5.</span> <span class="nav-text">测试俩个拦截器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如果Controller等采用的注解配置-那么拦截器需要mvc标签进行配置"><span class="nav-number">6.</span> <span class="nav-text">如果Controller等采用的注解配置,那么拦截器需要mvc标签进行配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拦截器是单例"><span class="nav-number">7.</span> <span class="nav-text">拦截器是单例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#记录执行Controller所用时间"><span class="nav-number">8.</span> <span class="nav-text">记录执行Controller所用时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#登录检查"><span class="nav-number">9.</span> <span class="nav-text">登录检查</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于注解的SpringMVC"><span class="nav-number"></span> <span class="nav-text">基于注解的SpringMVC</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用于支持注解的配置"><span class="nav-number">1.</span> <span class="nav-text">用于支持注解的配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于注解的Controller"><span class="nav-number"></span> <span class="nav-text">基于注解的Controller</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于注解的Controller的返回值"><span class="nav-number"></span> <span class="nav-text">基于注解的Controller的返回值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#返回ModelAndView-和之前一样"><span class="nav-number">1.</span> <span class="nav-text">返回ModelAndView,和之前一样</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#返回String-表示跳转的逻辑视图名字-模型可以通过参数传过来"><span class="nav-number">2.</span> <span class="nav-text">返回String,表示跳转的逻辑视图名字,模型可以通过参数传过来</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#声明返回类型为void"><span class="nav-number">3.</span> <span class="nav-text">声明返回类型为void</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ijavaC</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
