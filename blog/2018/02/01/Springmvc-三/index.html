@@ -89,7 +89,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1517467516599&di=06134764e4a1c886b56bd70bab06d6f1&imgtype=0&src=http%3A%2F%2F7xs09x.com1.z0.glb.clouddn.com%2F160907-springmvc-getting-started-tutorial-mvc.gif">
 <meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1517467516599&di=06134764e4a1c886b56bd70bab06d6f1&imgtype=0&src=http%3A%2F%2F7xs09x.com1.z0.glb.clouddn.com%2F160907-springmvc-getting-started-tutorial-mvc.gif">
-<meta property="og:updated_time" content="2018-02-01T04:30:55.529Z">
+<meta property="og:updated_time" content="2018-02-02T01:43:50.910Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Springmvc (三)">
 <meta name="twitter:description" content="Spring2.5中引入注解对处理器(headler)支持1234567891011121314@Controller           用于标识是处理器类；   @RequestMapping             请求到处理器功能方法的映射规则；   @RequestParam            请求参数到处理器功能处理方法的方法参数上的绑定；    @ModelAttribute">
@@ -139,6 +139,8 @@
 
 
 
+  <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -910,6 +912,8 @@ public String test(@RequestHeader(&quot;User-Agent&quot;) String userAgent,
 <p>相当于 </p>
 <pre><code>public String test(User u,Model model){
     model.setAttribute(&quot;my_user&quot;,u)
+     // 如果 没有定义Model 也会自动 将Uesr 进行绑定
+    //参数名称为 类名 首字母小写
 }
 </code></pre><p>和上面接收到的”第五种”情况一样,只是此处多了一个注解@ModelAttribute(“my_user”),<br>它的作用是将该绑定的命令对象以”my_user”为名称添加到模型对象中供视图页面展示使用。<br>我们此时可以在视图页面使用${my_user.username}来获取绑定的命令对象的属性。</p>
 <p>如果不写@ModelAttribute(“my_user”)这个注解,那么默认添加到模型中的名字是<br>该类型的类名首字母小写,例如这里便是user,页面中取值就需要这样${user.username}</p>
@@ -922,7 +926,7 @@ public List&lt;String&gt; cityList(String username) {
     return Arrays.asList(&quot;北京&quot;, &quot;山东&quot;);
 }
 </code></pre><p>如果当前模型中没有名字为cityList的数据时,<br>如上代码会在执行处理器中任意功能处理方法之前执行,<br>并将返回值自动添加到模型对象中,<br>在功能处理方法中调用Model对象中的方法containsAttribute(“cityList”)将会返回true。  </p>
-<p>注意:模型中数据的作用范围是request级别的<br>注意:此方法中依然是可以接收本次请求的参数的,<br>默认和客户端所传参数名字保持一致,<br>也可以使用@RequestParam指定参数名   </p>
+<p>注意:<strong>模型中数据的作用范围是request级别的</strong><br>注意:<strong>此方法中依然是可以接收本次请求的参数的</strong>,<br>默认和客户端所传参数名字保持一致,<br>也可以使用@RequestParam指定参数名   </p>
 <pre><code>注意:如何有俩个同名的命令对象,如下
         @ModelAttribute(&quot;user&quot;)
         public User getUser(String username) {
@@ -943,6 +947,7 @@ public List&lt;String&gt; cityList(String username) {
 
         说明springMVC对于模型中重名的对象,不会重复创建,
         默认模型中已经有了这个名字的对象,那么就直接拿出来使用
+        先执行 ModelAttribute 属性注入 , 如果页面也有属性注入 则覆盖
 </code></pre><blockquote>
 <p>3.把功能处理方法的返回值添加到模型数据中</p>
 </blockquote>
@@ -1037,6 +1042,10 @@ public @ModelAttribute List&lt;User&gt; test()
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/blog/2018/02/05/SpringMVC-四/" rel="prev" title="SpringMVC (四)">
+                SpringMVC (四) <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -1121,7 +1130,7 @@ public @ModelAttribute List&lt;User&gt; test()
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
