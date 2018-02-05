@@ -1,0 +1,1753 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java,Spring,Springmvc," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Spring2.5中引入注解对处理器(headler)支持1234567891011121314@Controller           用于标识是处理器类；   @RequestMapping             请求到处理器功能方法的映射规则；   @RequestParam            请求参数到处理器功能处理方法的方法参数上的绑定；    @ModelAttribute">
+<meta name="keywords" content="Java,Spring,Springmvc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Springmvc (三)">
+<meta property="og:url" content="https://www.ijavac.com/blog/2018/02/01/Springmvc-三.html/index.html">
+<meta property="og:site_name" content="Let&#39;s get started">
+<meta property="og:description" content="Spring2.5中引入注解对处理器(headler)支持1234567891011121314@Controller           用于标识是处理器类；   @RequestMapping             请求到处理器功能方法的映射规则；   @RequestParam            请求参数到处理器功能处理方法的方法参数上的绑定；    @ModelAttribute">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1517467516599&di=06134764e4a1c886b56bd70bab06d6f1&imgtype=0&src=http%3A%2F%2F7xs09x.com1.z0.glb.clouddn.com%2F160907-springmvc-getting-started-tutorial-mvc.gif">
+<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1517467516599&di=06134764e4a1c886b56bd70bab06d6f1&imgtype=0&src=http%3A%2F%2F7xs09x.com1.z0.glb.clouddn.com%2F160907-springmvc-getting-started-tutorial-mvc.gif">
+<meta property="og:updated_time" content="2018-02-02T01:43:50.910Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Springmvc (三)">
+<meta name="twitter:description" content="Spring2.5中引入注解对处理器(headler)支持1234567891011121314@Controller           用于标识是处理器类；   @RequestMapping             请求到处理器功能方法的映射规则；   @RequestParam            请求参数到处理器功能处理方法的方法参数上的绑定；    @ModelAttribute">
+<meta name="twitter:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1517467516599&di=06134764e4a1c886b56bd70bab06d6f1&imgtype=0&src=http%3A%2F%2F7xs09x.com1.z0.glb.clouddn.com%2F160907-springmvc-getting-started-tutorial-mvc.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://www.ijavac.com/blog/2018/02/01/Springmvc-三.html/"/>
+
+
+
+
+
+  <title>Springmvc (三) | Let's get started</title>
+  
+
+
+
+
+
+
+
+
+  <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Let's get started</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Coding4Life</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.ijavac.com/blog/2018/02/01/Springmvc-三.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ijavaC">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Let's get started">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Springmvc (三)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-01T12:01:05+08:00">
+                2018-02-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Spring2-5中引入注解对处理器-headler-支持"><a href="#Spring2-5中引入注解对处理器-headler-支持" class="headerlink" title="Spring2.5中引入注解对处理器(headler)支持"></a>Spring2.5中引入注解对处理器(headler)支持</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@Controller   </span><br><span class="line">        用于标识是处理器类；   </span><br><span class="line">@RequestMapping     </span><br><span class="line">        请求到处理器功能方法的映射规则；   </span><br><span class="line">@RequestParam    </span><br><span class="line">        请求参数到处理器功能处理方法的方法参数上的绑定；    </span><br><span class="line">@ModelAttribute    </span><br><span class="line">        请求参数到命令对象的绑定；   </span><br><span class="line">@SessionAttributes      </span><br><span class="line">        用于声明session级别存储的属性,放置在处理器类上,</span><br><span class="line">        通常列出模型属性(如@ModelAttribute)对应的名称,</span><br><span class="line">        则这些属性会透明的保存到session 中    </span><br><span class="line">@InitBinder        </span><br><span class="line">        自定义数据绑定注册支持,用于将请求参数转换到命令对象属性的对应类型；</span><br></pre></td></tr></table></figure>
+<p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1517467516599&amp;di=06134764e4a1c886b56bd70bab06d6f1&amp;imgtype=0&amp;src=http%3A%2F%2F7xs09x.com1.z0.glb.clouddn.com%2F160907-springmvc-getting-started-tutorial-mvc.gif" alt="springmvc"><br><a id="more"></a></p>
+<h2 id="Spring2-5中引入注解对处理器-headler-支持-1"><a href="#Spring2-5中引入注解对处理器-headler-支持-1" class="headerlink" title="Spring2.5中引入注解对处理器(headler)支持"></a>Spring2.5中引入注解对处理器(headler)支持</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@Controller   </span><br><span class="line">        用于标识是处理器类；   </span><br><span class="line">@RequestMapping     </span><br><span class="line">        请求到处理器功能方法的映射规则；   </span><br><span class="line">@RequestParam    </span><br><span class="line">        请求参数到处理器功能处理方法的方法参数上的绑定；    </span><br><span class="line">@ModelAttribute    </span><br><span class="line">        请求参数到命令对象的绑定；   </span><br><span class="line">@SessionAttributes      </span><br><span class="line">        用于声明session级别存储的属性,放置在处理器类上,</span><br><span class="line">        通常列出模型属性(如@ModelAttribute)对应的名称,</span><br><span class="line">        则这些属性会透明的保存到session 中    </span><br><span class="line">@InitBinder        </span><br><span class="line">        自定义数据绑定注册支持,用于将请求参数转换到命令对象属性的对应类型；</span><br></pre></td></tr></table></figure>
+<p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1517467516599&amp;di=06134764e4a1c886b56bd70bab06d6f1&amp;imgtype=0&amp;src=http%3A%2F%2F7xs09x.com1.z0.glb.clouddn.com%2F160907-springmvc-getting-started-tutorial-mvc.gif" alt="springmvc"><br><!--more--></p>
+<h2 id="Spring3引入了更多的注解-其中包含了对RESTful架构风格的支持"><a href="#Spring3引入了更多的注解-其中包含了对RESTful架构风格的支持" class="headerlink" title="Spring3引入了更多的注解,其中包含了对RESTful架构风格的支持"></a>Spring3引入了更多的注解,其中包含了对RESTful架构风格的支持</h2><pre><code>@CookieValue
+    cookie数据到处理器功能处理方法的方法参数上的绑定；
+@RequestHeader
+    请求头数据到处理器功能处理方法的方法参数上的绑定；
+@RequestBody
+    请求的body体的绑定
+@ResponseBody
+    处理器功能处理方法的返回值作为响应体
+@ResponseStatus
+    定义处理器功能处理方法/异常处理器返回的状态码和原因；
+@ExceptionHandler
+    注解式声明异常处理器；
+@PathVariable
+    请求URI 中的模板变量部分到处理器功能处理方法的方法参数上的绑定,从而支持RESTful架构风格的URI；
+</code></pre><h2 id="Spring3中引入的mvc命名空间"><a href="#Spring3中引入的mvc命名空间" class="headerlink" title="Spring3中引入的mvc命名空间"></a>Spring3中引入的mvc命名空间</h2><p>mvc这个命名空间是在Spring3中引入的,其作用是用来支持mvc的配置<br>需要在<bean>中声明出这个命名空间及其对应的schemaLocation中的值   </bean></p>
+<p><mvc:annotation-driven><br>        自动注册基于注解风格的处理器和适配器:<br>        在spring2.5中是DefaultAnnotationHandlerMapping和AnnotationMethodHandlerAdapter<br>在spring3中是RequestMappingHandlerMapping和RequestMappingHandlerAdapter.<br>同时还支持各种数据的转换器.</mvc:annotation-driven></p>
+<p><mvc:interceptors><br>配置自定义的处理器拦截器,例如:</mvc:interceptors></p>
+<pre><code>    &lt;mvc:interceptors&gt; 
+    &lt;mvc:interceptor&gt;
+        &lt;mvc:mapping path=&quot;/**&quot;/&gt;
+        &lt;ref bean=&quot;handlerInterceptor1&quot;/&gt;
+    &lt;/mvc:interceptor&gt;
+&lt;/mvc:interceptors&gt;
+</code></pre><p><mvc:view-controller><br>可以配置在收到相应请求后直接选择相应的视图,<br>不需要写控制器的代码了，例如:<br><strong><mvc:view-controller path="/index" view-name="index"></mvc:view-controller></strong><br>可以通过这个方法 访问/WEB-INF/下的jsp文件<br>例如 index.jsp 不需要 handler 处理数据只想访问jsp页面</mvc:view-controller></p>
+<pre><code>&lt;mvc:resources&gt;
+    逻辑静态资源路径到物理静态资源路径的对应.例如:
+    &lt;mvc:resources mapping=&quot;/images/**&quot; location=&quot;/images/&quot;/&gt; 
+    &lt;mvc:resources mapping=&quot;/js/**&quot; location=&quot;/js/&quot;/&gt; 
+    &lt;mvc:resources mapping=&quot;/css/**&quot; location=&quot;/css/&quot;/&gt;
+
+&lt;mvc:default-servlet-handler&gt;
+    当在web.xml中DispatcherServlet使用&lt;url-pattern&gt;/&lt;/url-pattern&gt;  
+    映射的时候,会静态资源也映射了,如果配置了这个mvc标签,
+    那么再访问静态资源的时候就转交给默认的Servlet来响应静态文件,
+    否则报404 找不到静态资源错误。
+</code></pre><h2 id="Controller和-RequestMapping注解"><a href="#Controller和-RequestMapping注解" class="headerlink" title="@Controller和@RequestMapping注解"></a>@Controller和@RequestMapping注解</h2><h3 id="声明处理器"><a href="#声明处理器" class="headerlink" title="声明处理器"></a>声明处理器</h3><pre><code>@Controller
+public class HelloWorldController {
+
+}
+</code></pre><h3 id="映射处理器中的【功能处理方法】"><a href="#映射处理器中的【功能处理方法】" class="headerlink" title="映射处理器中的【功能处理方法】"></a>映射处理器中的【功能处理方法】</h3><pre><code>@Controller
+public class HelloWorldController {
+    @RequestMapping(&quot;/home&quot;)
+    public ModelAndView home(){
+        ModelAndView mv = new ModelAndView(&quot;index&quot;);
+        return mv;
+    }
+}
+</code></pre><p>表明该方法映射的url路径为/home</p>
+<h3 id="RequestMapping也可以写在处理器类上"><a href="#RequestMapping也可以写在处理器类上" class="headerlink" title="@RequestMapping也可以写在处理器类上"></a>@RequestMapping也可以写在处理器类上</h3><pre><code>@RequestMapping(&quot;/test&quot;)
+@Controller
+public class HomeController {
+    @RequestMapping(&quot;/home&quot;)
+    public ModelAndView home(){
+        ModelAndView mv = new ModelAndView(&quot;index&quot;);
+        return mv;
+    }
+}
+表明该方法映射的url路径为/test/home
+</code></pre><p>注意:功能处理方法的方法可以是String类型,表示逻辑视图的名字,可以不用返回ModelAndView对象<br>    例如:</p>
+<pre><code>@Controller
+public class HelloWorldController {
+    @RequestMapping(&quot;/home&quot;)
+    public String home(){
+        return &quot;index&quot;;
+    }
+}
+</code></pre><h2 id="请求映射"><a href="#请求映射" class="headerlink" title="请求映射"></a>请求映射</h2><pre><code>假设浏览器发送了一个请求如下:
+-------------------------------
+POST /login    HTTP1.1
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,en;q=0.8,zh;q=0.5,en-US;q=0.3
+Connection: keep-alive
+Cookie: JSESSIONID=DBC6367DEB1C024A836F3EA35FCFD5A2
+Host: 127.0.0.1:8989
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:49.0) Gecko/20100101 Firefox/49.0
+
+username=tom&amp;password=123
+--------------------------------
+
+
+http协议的请求格式如下:
+---------------------------------
+请求方法 URL 协议版本号
+请求头信息
+请求头信息
+请求头信息
+..
+回车换行
+请求正文
+---------------------------------
+</code></pre><p>从格式中我们可以看到【请求方法、URL、请求头信息、请求正文】这四部分一般是可变的,因此我们可以把请求中的这些信息在处理器的【功能处理方法】中进行的映射,因此请求的映射分为如下几种:      </p>
+<pre><code>URL路径映射  
+    使用URL映射到处理器的功能处理方法；    
+请求方法映射限定    
+    例如限定功能处理方法只处理GET请求；    
+请求参数映射限定      
+    例如限定只处理包含username参数的请求；     
+请求头映射限定    
+    例如限定只处理&quot;Accept=application/json&quot;的请求。     
+</code></pre><h2 id="URL路径映射"><a href="#URL路径映射" class="headerlink" title="URL路径映射"></a>URL路径映射</h2><h3 id="普通URL路径映射"><a href="#普通URL路径映射" class="headerlink" title="普通URL路径映射"></a>普通URL路径映射</h3><pre><code>@RequestMapping(value=&quot;/test&quot;)
+@RequestMapping(&quot;/hello&quot;)
+    注解中只出现一个参数且参数名为value的话,可以将参数名去掉
+@RequestMapping(value={&quot;/test&quot;, &quot;/user/hello&quot;})  数组
+    多个URL路径可以映射到同一个处理器的功能处理方法。
+</code></pre><h3 id="URI模板模式映射"><a href="#URI模板模式映射" class="headerlink" title="URI模板模式映射"></a>URI模板模式映射</h3><pre><code>@PathVariable() Integer userId
+    获取url 上的资源路径 作为形参的值
+    //@PathVariable   变量名 要和上面 { }  取得的参数一致
+@RequestMapping(value=&quot;/users/{userId}&quot;)
+    {XXX}占位符, 请求的URL可以是&quot;/users/123456&quot;或&quot;/users/abcd&quot;
+    ,之后可以通过@PathVariable可以提取URI模板模式中的{XXX}中的值
+@RequestMapping(value=&quot;/users/{userId}/create&quot;)
+    这样也是可以的,请求的URL可以是&quot;/users/123/create&quot;
+@RequestMapping(value=&quot;/users/{userId}/topics/{topicId}&quot;)
+    这样也是可以的,请求的URL可以是&quot;/users/123/topics/123&quot;
+</code></pre><h3 id="Ant风格的URL路径映射"><a href="#Ant风格的URL路径映射" class="headerlink" title="Ant风格的URL路径映射"></a>Ant风格的URL路径映射</h3><pre><code>@RequestMapping(value=&quot;/users/**&quot;)
+    可以匹配&quot;/users/abc/abc&quot;,但&quot;/users/123&quot;将会被【URI模板模式映射中的&quot;/users/{userId}&quot;模式优先映射到】
+@RequestMapping(value=&quot;/product/?&quot;)
+    可匹配&quot;/product/1&quot;或&quot;/product/a&quot;,但不匹配&quot;/product&quot;或&quot;/product/aa&quot;;
+    ?代表有且只有一个字符
+@RequestMapping(value=&quot;/product*&quot;)
+    可匹配&quot;/productabc&quot;或&quot;/product&quot;,但不匹配&quot;/productabc/abc&quot;;
+    *代表0~n个字符
+@RequestMapping(value=&quot;/product/*&quot;)
+    可匹配&quot;/product/abc&quot;,但不匹配&quot;/productabc&quot;;
+@RequestMapping(value=&quot;/products/**/{productId}&quot;)
+    可匹配&quot;/products/abc/abc/123&quot;或&quot;/products/123&quot;,也就是Ant风格和URI模板变量风格可混用;
+    **代表所有的子路径
+</code></pre><h3 id="正则表达式风格的URL路径映射"><a href="#正则表达式风格的URL路径映射" class="headerlink" title="正则表达式风格的URL路径映射"></a>正则表达式风格的URL路径映射</h3><p>从Spring3.0 开始支持正则表达式风格的URL路径映射,格式为{变量名:正则表达式},之后通过@PathVariable可以提取{XXX:正则表达式匹配的值}中的XXX这个变量的值。</p>
+<pre><code>@RequestMapping(value=&quot;/products/{categoryCode:\\d+}-{pageNumber:\\d+}&quot;)
+    可以匹配&quot;/products/123-1&quot;,但不能匹配&quot;/products/abc-1&quot;,这样可以设计更加严格的规则。
+@RequestMapping(value=&quot;/user/{Id:^\\d{4}-[a-z]{2}$}&quot;)
+    可以匹配&quot;/user/1234-ab&quot;
+
+注意:\d表示数字,但是\在java的字符串中是特殊字符,所以需要再加一个\进行转义即可
+(参照之前js的学习文档,和java的正则几乎一致,js正则中的一个/变为java中的俩个/即可)
+    括号:
+        [abc]     查找方括号之间的任何字符。
+        [^abc]     查找任何不在方括号之间的字符。
+        [0-9]     查找任何从 0 至 9 的数字。
+        [a-z]     查找任何从小写 a 到小写 z 的字符。
+        [A-Z]     查找任何从大写 A 到大写 Z 的字符。
+        [A-z]     查找任何从大写 A 到小写 z 的字符。
+        (red|blue|green)     查找任何指定的选项。
+
+    元字符:
+        .     查找单个任意字符,除了换行和行结束符.如果要表示.这个字符,需要转义
+        \w     查找单词字符。     字母 数字 _
+        \W     查找非单词字符。非 字母 数字 _
+        \d     查找数字。
+        \D     查找非数字字符。
+        \s     查找空白字符。
+        \S     查找非空白字符。
+        \b     匹配单词边界。
+        \B     匹配非单词边界。
+        \0     查找 NUL 字符。
+        \n     查找换行符。
+        \f     查找换页符。
+        \r     查找回车符。
+        \t     查找制表符。
+        \v     查找垂直制表符。
+
+    量词:
+        n+         匹配任何包含至少一个 n 的字符串。
+        n*         匹配任何包含零个或多个 n 的字符串。
+        n?         匹配任何包含零个或一个 n 的字符串。
+        n{X}     匹配包含 X 个 n 的序列的字符串。
+        n{X,Y}     匹配包含 X 到 Y 个 n 的序列的字符串。
+        n{X,}     匹配包含至少 X 个 n 的序列的字符串。
+        n$         匹配任何结尾为 n 的字符串。
+        ^n         匹配任何开头为 n 的字符串。
+        ?=n     匹配任何其后紧接指定字符串 n 的字符串。
+        ?!n     匹配任何其后没有紧接指定字符串 n 的字符串。
+
+
+正则表达式风格的URL路径映射是一种特殊的URI模板模式映射
+URI模板模式映射不能指定模板变量的数据类型,如是数字还是字符串；
+正则表达式风格的URL路径映射,可以指定模板变量的数据类型,可以将规则写的相当复杂。
+</code></pre><h2 id="请求方法映射限定"><a href="#请求方法映射限定" class="headerlink" title="请求方法映射限定"></a>请求方法映射限定</h2><p>一般获取数据为GET请求方法,提交表单一般为POST请求方法。但之前URL路径映射方式对任意请求方法都是接受的,因此我们需要某种方式来告诉相应的功能处理方法只处理如GET方式的请求或POST方式的请求。</p>
+<pre><code>@RequestMapping(value=&quot;/user/{userId:\\d+}&quot;,method=RequestMethod.GET)
+    可以匹配&quot;/user/100&quot;,并且请求方式只能是GET
+
+@RequestMapping(value=&quot;/hello&quot;, method={RequestMethod.POST,RequestMethod.GET})
+    可以匹配&quot;/hello&quot;,并且请求方式只能是POST或者GET
+</code></pre><p>注意:</p>
+<ol>
+<li>一般浏览器只支持GET、POST请求方法,如想浏览器支持PUT、DELETE 等请求方法只能模拟。(jquery中的ajax函数可以发送这些方式的请求)</li>
+<li>除了GET、POST,还有HEAD、OPTIONS、PUT、DELETE、TRACE(观察servlet源码也可获知)</li>
+<li>DispatcherServlet默认开启对GET、POST、PUT、DELETE、HEAD 的支持；</li>
+<li>如果需要支持OPTIONS、TRACE,请添加DispatcherServlet 在web.xml    的初始化参数:dispatchOptionsRequest 和dispatchTraceRequest    为true。(查看源码,在DispatcherServlet的父类中可以找到这个俩个属性)</li>
+</ol>
+<h2 id="请求参数映射限定"><a href="#请求参数映射限定" class="headerlink" title="请求参数映射限定"></a>请求参数映射限定</h2><pre><code>1)请求数据中有指定参数名
+请求中必需有指定参数    否则400错误
+@RequestMapping(&quot;/test&quot;)
+@Controller
+public class HomeController {
+    @RequestMapping(value=&quot;param1&quot;,params=&quot;create&quot;,method=RequestMethod.GET)
+    public ModelAndView test1(){
+
+        return null;
+    }
+    @RequestMapping(value=&quot;param2&quot;,params=&quot;create&quot;,method=RequestMethod.POST)
+    public ModelAndView test2(){
+
+        return null;
+    }
+}
+
+可以匹配的路径为:/test?create
+如果是get 方式的请求则访问test1方法
+如果是post方式的请求则访问test2方法
+
+
+2)请求数据中没有指定参数名
+@RequestMapping(params=&quot;!create&quot;, method=RequestMethod.GET)
+
+
+3)请求数据中指定参数名=值
+@RequestMapping(params=&quot;username=tom&quot;)   
+
+
+4)请求数据中指定参数名!=值
+@RequestMapping(params=&quot;username!=tom&quot;)
+
+5)组合使用是&quot;且&quot;的关系
+@RequestMapping(params={&quot;create&quot;,&quot;username=tom&quot;})
+</code></pre><h2 id="请求头数据映射限定"><a href="#请求头数据映射限定" class="headerlink" title="请求头数据映射限定"></a>请求头数据映射限定</h2><pre><code>1)请求头数据中有指定参数名
+@RequestMapping(value=&quot;/header/test1&quot;, headers=&quot;Accept&quot;)
+    表示请求的URL必须为&quot;/header/test1&quot;且请求头中必须有Accept参数才能匹配。
+
+@RequestMapping(value=&quot;/header/test1&quot;, headers=&quot;my_test&quot;)
+    表示请求的URL必须为&quot;/header/test1&quot;且请求头中必须有my_test参数才能匹配
+
+2)请求头数据中没有指定参数名
+@RequestMapping(value=&quot;/header/test2&quot;, headers=&quot;!abc&quot;)
+    表示请求的URL必须为&quot;/header/test2&quot;且请求头中必须没有abc参数才能匹配
+
+
+3)请求头数据中指定参数名=值
+@RequestMapping(value=&quot;/header/test3&quot;, headers=&quot;Content-Type=application/json&quot;)
+表示请求的URL必须为&quot;/header/test3&quot;且请求头中必须有&quot;Content-Type=application/json&quot;参数即可匹配。
+
+
+4)请求头数据中指定参数名!=值
+@RequestMapping(value=&quot;/header/test4&quot;, headers=&quot;Accept!=text/plain&quot;)
+表示请求的URL必须为&quot;/header/test4&quot;且请求头中必须有Accept参数,但是值不等于text/plain即可
+
+5)组合使用是&quot;且&quot;的关系
+@RequestMapping(value=&quot;/header/test5&quot;, headers={&quot;Accept!=text/plain&quot;, &quot;abc=123&quot;}):
+表示请求的URL必须为&quot;/header/test5&quot;且请求头中必须有&quot;Accept&quot;参数但值不等于&quot;text/plain&quot;且请求中必须有参数&quot;abc=123&quot;即可匹配。
+
+
+6)consumes属性和produces属性
+consumes 指定处理请求的提交内容类型
+@RequestMapping(value=&quot;/test&quot;,consumes=&quot;application/json&quot;) 
+    方法仅处理请求中,Content-Type为&quot;application/json&quot;类型的请求
+
+produces 指定返回的内容类型
+@RequestMapping(value= &quot;/test&quot;, produces=&quot;application/json&quot;)
+    表示将功能处理方法将产生json格式的数据,此时根据请求头中的Accept进行匹配,如请求头&quot;Accept:application/json&quot;时即可匹配;
+
+
+例如:
+@Controller
+public class HomeController {
+    @RequestMapping(value=&quot;/test&quot;,consumes=&quot;application/json&quot;)
+    public ModelAndView test1(){
+        System.out.println(&quot;test1....&quot;);
+        return null;
+    }
+    @RequestMapping(value=&quot;/test&quot;,produces=&quot;application/json&quot;)
+    public ModelAndView test2(){
+        System.out.println(&quot;test2....&quot;);
+        return null;
+    }
+}
+
+测试类中的main函数代码:
+此处我们使用Spring提供的Http客户端API创建了请求并设置了请求的Content-Type和编码并在响应体中写回了json数据
+public static void main(String[] args) {
+
+    try {
+        String url = &quot;http://127.0.0.1:8888/SpringMVC/test&quot;;
+        //创建HttpRequest
+        ClientHttpRequest request =
+        new SimpleClientHttpRequestFactory().
+        createRequest(new URI(url), HttpMethod.POST);
+        //设置请求头的内容类型头和内容编码
+        //request.getHeaders().set(&quot;Content-Type&quot;, &quot;application/json;charset=UTF-8&quot;);
+        request.getHeaders().set(&quot;Accept&quot;, &quot;application/json;charset=UTF-8&quot;);
+        //写出请求内容体
+        String jsonData = &quot;{\&quot;username\&quot;:\&quot;zhang\&quot;, \&quot;password\&quot;:\&quot;123\&quot;}&quot;;
+        request.getBody().write(jsonData.getBytes(&quot;UTF-8&quot;));
+        //发送请求并得到响应
+        ClientHttpResponse response = request.execute();
+        System.out.println(response.getStatusCode());
+        System.out.println(response.getHeaders());
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+
+
+注意:在上面代码中,如果想获得响应正文中的数据,可以编写一下代码:
+//得到响应体的编码方式
+Charset charset = response.getHeaders().getContentType().getCharSet();
+//得到响应体的内容
+InputStream is = response.getBody();
+byte bytes[] = new byte[(int)response.getHeaders().getContentLength()];
+is.read(bytes);
+String data = new String(bytes, charset);
+System.out.println(&quot;charset : &quot; + charset + &quot;, data : &quot; + data);
+</code></pre><h2 id="数据绑定"><a href="#数据绑定" class="headerlink" title="数据绑定"></a>数据绑定</h2><pre><code>1)功能处理方法支持的参数类型
+注意下面这些参数都可以在功能处理方法中直接声明并且没有指定顺序,spring会自动注入的
+  第一种
+    ServletRequest/HttpServletRequest 和 ServletResponse/HttpServletResponse
+    SpringWebMVC框架会自动帮助我们把相应的Servlet请求/响应作为参数传递过来。
+
+  第二种
+    InputStream/OutputStream 和 Reader/Writer
+    分别对应的是request.getInputStream();
+                response.getOutputStream();
+                request.getReader();
+                response.getWriter()。
+    InputStream/OutputStream 和 Reader/Writer两组不能同时使用,只能使用其中的一组。
+
+  第三种
+    WebRequest/NativeWebRequest
+    WebRequest是SpringMVC提供的统一请求访问接口,不仅仅可以访问请求相关数据
+    (如参数区数据、请求头数据,但访问不到Cookie区数据),
+    还可以访问会话和上下文中的数据；NativeWebRequest继承了WebRequest,
+    并提供访问本地ServletAPI的方法。
+    例如:
+    public String webRequest(WebRequest webRequest, NativeWebRequest nativeWebRequest) { 
+        System.out.println(webRequest.getParameter(&quot;test&quot;));
+        webRequest.setAttribute(&quot;name&quot;, &quot;value&quot;,WebRequest.SCOPE_REQUEST); 
+        System.out.println(webRequest.getAttribute(&quot;name&quot;, WebRequest.SCOPE_REQUEST)); 
+        HttpServletRequest request =   
+            nativeWebRequest.getNativeRequest(HttpServletRequest.class);
+        HttpServletResponse response =   
+            nativeWebRequest.getNativeResponse(HttpServletResponse.class); 
+            return &quot;success&quot;; 
+    }
+
+    webRequest.getParameter() 访问请求参数区的数据webRequest.getHeader()    访问请求头数据
+    webRequest.setAttribute/getAttribute:到指定的作用范围内取/放属性数据,
+    Servlet定义的三个作用范围分别使用如下常量代表:
+        SCOPE_REQUEST :代表请求作用范围；
+        SCOPE_SESSION :代表会话作用范围；
+        SCOPE_GLOBAL_SESSION :代表全局会话作用范围,即ServletContext上下文作用范围。
+
+    得到本地的Servlet API。
+    nativeWebRequest.getNativeRequest
+    nativeWebRequest.getNativeResponse
+
+
+  第四种
+    HttpSession
+    public String session(HttpSession session) { 
+        System.out.println(session);
+        //可以直接在view中获取并取到
+        session.setAttribute(&quot;name&quot;, &quot;zhangsan&quot;);
+        return &quot;success&quot;; 
+    } 
+    注意:session访问不是线程安全的,如果需要线程安全,
+    需要设置AnnotationMethodHandlerAdapter
+    或RequestMappingHandlerAdapter的synchronizeOnSession属性为true,
+    即可线程安全的访问session。
+    在spring2.5中是AnnotationMethodHandlerAdapter
+    在spring3中是RequestMappingHandlerAdapter.
+
+
+  第五种
+    命令/表单对象
+    SpringMVC能够自动将请求参数绑定到功能处理方法的命令/表单对象上。
+        请求的key值 和 pojo类 fieldName 一致
+    这里说的命令/表单对象并不需要实现任何接口，仅是一个拥有若干属性的POJO类对象
+
+    例如:
+    @RequestMapping(value = &quot;/create&quot;)
+    public String toCreateUser(User user) { 
+        return null; 
+    }
+    如果提交的表单(包含username和password文本域),将自动将请求参数绑定到命令对象user中去。
+
+    单独映射 
+    @RequestParam(value = &quot;itemId&quot;, required = true, defaultValue = &quot;1&quot;) Integer id
+
+    如果 请求参数的name 和 形参name一致 可以直接通过反射 进行赋值
+     @RequestMapping(value = &quot;/login&quot;)
+    public String toCreateUser(String userName,String userPassword) { 
+        return null; 
+    }
+
+
+  第六种
+    Model、Map、ModelMap
+    SpringMVC提供Model、Map或ModelMap让我们能去封装/处理模型数据。
+    例如:
+    @RequestMapping(value=&quot;/model&quot;) 
+    public String test(Model m1, Map m2, ModelMap m3) { 
+        m1.addAttribute(&quot;a&quot;, &quot;a&quot;); 
+        m2.put(&quot;b&quot;, &quot;b&quot;); 
+        m3.put(&quot;c&quot;, &quot;c&quot;); 
+        System.out.println(m1 == m2); 
+        System.out.println(m2 == m3); 
+        return &quot;success&quot;;
+    } 
+    虽然此处注入的是三个不同的类型(Model model, Map model2, ModelMap model3),但三者是同一个对象
+
+
+  第七种
+    HttpEntity&lt;T&gt;和ResponseEntity&lt;T&gt;
+
+    例如:HttpEntity的使用
+    @RequestMapping(value=&quot;test&quot;)
+    public String test(HttpEntity&lt;String&gt; httpEntity){
+        //获得请求中的所有的header部分
+        HttpHeaders headers = httpEntity.getHeaders();
+        //获得请求中的所有的body部分
+        String body = httpEntity.getBody();             
+    }
+
+    例如:ResponseEntity的使用,可以自定义响应的各个部分
+    @RequestMapping(&quot;/test&quot;)   
+    public ResponseEntity&lt;String&gt; test(){ 
+        //创建响应头对象
+        HttpHeaders headers = new HttpHeaders();
+
+        //创建MediaType对象
+        MediaType mt = new MediaType(&quot;text&quot;,&quot;html&quot;,Charset.forName(&quot;UTF-8&quot;));
+        //设置ContentType
+        headers.setContentType(mt); 
+
+        //准备好相应体
+        String content = new String(&quot;hello world&quot;);
+
+        //根据响应内容/响应头信息/响应状态码创建响应对象
+        ResponseEntity&lt;String&gt; re = new ResponseEntity&lt;String&gt;(content,headers,HttpStatus.OK);
+
+        //返回ResponseEntity对象
+        return re;
+    }
+
+
+  第八种
+    除了以上几种类型参数之外,还支持一些其他的类型,
+    如:BindingResult、Errors、Locale、Principal、
+    UriComponentsBuilder、SessionStatus、RedirectAttributes等
+</code></pre><h2 id="RequestParam绑定单个请求参数值"><a href="#RequestParam绑定单个请求参数值" class="headerlink" title="@RequestParam绑定单个请求参数值"></a>@RequestParam绑定单个请求参数值</h2><p>用于将请求参数区数据映射到功能处理方法的参数上<br>public String test(@RequestParam String username)<br>请求中包含username 参数(如/test?username=tom),则自动传入。<br>如果url为/test?name=tom,即俩边参数名不一致,那么就需要手动指定<br>public String test(@RequestParam(“name”) String username)  </p>
+<p> @RequestParam注解中主要有哪些参数<br>        value:参数名字,即请求参数名字<br>        required:是否必须,默认是true<br>        defaultValue:默认值,表示如果请求中对应参数时则采用此默认值,<br>        默认值可以是spring中的SpEL 表达式,如<br>        “#{systemProperties[‘java.vm.version’]}”。    </p>
+<pre><code>注意:systemProperties是spring自动方法ioc容器中的一个Properties对象,
+里面方法中很多系统变量,要取值只需#{systemProperties[&apos;key&apos;]}即可
+
+@RequestMapping(value=&quot;/home2&quot;)
+public String test(@RequestParam(defaultValue=&quot;#{systemProperties}&quot;) Object p){
+    System.out.println(&quot;p = &quot;+p);
+    System.out.println(&quot;p = &quot;+p.getClass());
+    System.out.println(((Properties)p).get(&quot;user.home&quot;));
+    return &quot;index&quot;;
+}
+
+
+SpEL表达式的使用,例如:
+(Spring 容器需要有name 为stu 的对象)
+取名字为stu的bean的name字段的值,这里指的是property
+public String test(@RequestParam(defaultValue=&quot;#{stu.name}&quot;) String username)
+
+对其他bean中某个方法的引用
+public String test(@RequestParam(defaultValue=&quot;#{stu.sayHello()}&quot;) String username)
+public String test(@RequestParam(defaultValue=&quot;#{stu.sayHello(&apos;tom&apos;)}&quot;) String username)
+
+表达式(?.)可以确保在sayHello()返回不为空的情况下调用toUpperCase()方法,如果返回空那么不继续调用后面的方法
+public String test(@RequestParam(defaultValue=&quot;#{stu.sayHello()?.toUpperCase()}&quot;) String username)
+
+如果要调用的某个类是外部类,而不是spring中定义的bean,使用表达式T()
+public String test(@RequestParam(defaultValue=&quot;#{T(java.lang.Math).random()}&quot;) String username)
+</code></pre><h2 id="PathVariable绑定URI模板变量值"><a href="#PathVariable绑定URI模板变量值" class="headerlink" title="@PathVariable绑定URI模板变量值"></a>@PathVariable绑定URI模板变量值</h2><pre><code>用于将请求URL中的模板变量映射到功能处理方法的参数上。
+
+@RequestMapping(value=&quot;/users/{userId}/topics/{topicId}&quot;)
+public String test(@PathVariable int userId,
+@PathVariable int topicId){
+
+    return &quot;index&quot;;
+}
+
+如请求的 URL为&quot;/users/123/topics/456&quot;,则自动将URL  
+中模板变量{userId}和{topicId}绑定到通过@PathVariable注解的同名参数上,
+即入参后userId=123、topicId=456。 
+如果参数不同名,则需要自己手动指定 
+public String test(@PathVariable(&quot;uid&quot;) int userId,
+@PathVariable(&quot;tid&quot;) int topicId){
+
+    return &quot;index&quot;;
+}
+</code></pre><h2 id="CookieValue绑定Cookie数据值"><a href="#CookieValue绑定Cookie数据值" class="headerlink" title="@CookieValue绑定Cookie数据值"></a>@CookieValue绑定Cookie数据值</h2><pre><code>用于将请求的Cookie数据映射到功能处理方法的参数上。
+public String test(@CookieValue(value=&quot;JSESSIONID&quot;, defaultValue=&quot;&quot;) String sessionId)
+如上配置将自动将JSESSIONID 值入参到sessionId 参数上,defaultValue 表示Cookie中没有JSESSIONID时默认为空。
+
+传入参数类型也可以是javax.servlet.http.Cookie类型。
+public String test(@CookieValue(value=&quot;JSESSIONID&quot;, defaultValue=&quot;&quot;) Cookie cookie)
+</code></pre><h2 id="RequestHeader-绑定请求头数据"><a href="#RequestHeader-绑定请求头数据" class="headerlink" title="@RequestHeader 绑定请求头数据"></a>@RequestHeader 绑定请求头数据</h2><pre><code>用于将请求的头信息区数据映射到功能处理方法的参数上。
+@RequestMapping(value=&quot;/header&quot;)
+public String test(@RequestHeader(&quot;User-Agent&quot;) String userAgent,
+@RequestHeader(value=&quot;Accept&quot;) String[] accepts)
+
+如上配置将自动将请求头&quot;User-Agent&quot;的值,
+入参到userAgent参数上,并将&quot;Accept&quot;请求头值入参到accepts参数上。
+</code></pre><h2 id="ModelAttribute-绑定请求参数到命令对象"><a href="#ModelAttribute-绑定请求参数到命令对象" class="headerlink" title="@ModelAttribute 绑定请求参数到命令对象"></a>@ModelAttribute 绑定请求参数到命令对象</h2><h3 id="该注解具有如下三个作用"><a href="#该注解具有如下三个作用" class="headerlink" title="该注解具有如下三个作用:"></a>该注解具有如下三个作用:</h3><blockquote>
+<p>1.绑定请求参数到命令对象  </p>
+</blockquote>
+<p>例如在用户登录时,我们需要捕获用户登录的请求参数(用户名、密码)并封装为用户对象,<br>此时我们可以使用@ModelAttribute绑定多个请求参数到我们的命令对象。  </p>
+<p>public String test(@ModelAttribute(“my_user”) User u)   </p>
+<p>相当于 </p>
+<pre><code>public String test(User u,Model model){
+    model.setAttribute(&quot;my_user&quot;,u)
+     // 如果 没有定义Model 也会自动 将Uesr 进行绑定
+    //参数名称为 类名 首字母小写
+}
+</code></pre><p>和上面接收到的”第五种”情况一样,只是此处多了一个注解@ModelAttribute(“my_user”),<br>它的作用是将该绑定的命令对象以”my_user”为名称添加到模型对象中供视图页面展示使用。<br>我们此时可以在视图页面使用${my_user.username}来获取绑定的命令对象的属性。</p>
+<p>如果不写@ModelAttribute(“my_user”)这个注解,那么默认添加到模型中的名字是<br>该类型的类名首字母小写,例如这里便是user,页面中取值就需要这样${user.username}</p>
+<blockquote>
+<p>2.在功能处理方法执行前,向模型中添加数据</p>
+</blockquote>
+<pre><code>@ModelAttribute(&quot;cityList&quot;)
+public List&lt;String&gt; cityList(String username) {
+
+    return Arrays.asList(&quot;北京&quot;, &quot;山东&quot;);
+}
+</code></pre><p>如果当前模型中没有名字为cityList的数据时,<br>如上代码会在执行处理器中任意功能处理方法之前执行,<br>并将返回值自动添加到模型对象中,<br>在功能处理方法中调用Model对象中的方法containsAttribute(“cityList”)将会返回true。  </p>
+<p>注意:<strong>模型中数据的作用范围是request级别的</strong><br>注意:<strong>此方法中依然是可以接收本次请求的参数的</strong>,<br>默认和客户端所传参数名字保持一致,<br>也可以使用@RequestParam指定参数名   </p>
+<pre><code>注意:如何有俩个同名的命令对象,如下
+        @ModelAttribute(&quot;user&quot;)
+        public User getUser(String username) {
+            User user = new User();
+            user.setUsername(&quot;briup&quot;);
+            return user;
+        }
+
+        @RequestMapping(value=&quot;/model&quot;)
+        public String test1(@ModelAttribute(&quot;user&quot;) User user, Model model){
+            //输出结果为briup
+            System.out.println(user.getUsername());
+
+            //返回值是true
+            System.out.println(user == model.asMap().get(&quot;user&quot;));
+            return &quot;index&quot;;
+        }
+
+        说明springMVC对于模型中重名的对象,不会重复创建,
+        默认模型中已经有了这个名字的对象,那么就直接拿出来使用
+        先执行 ModelAttribute 属性注入 , 如果页面也有属性注入 则覆盖
+</code></pre><blockquote>
+<p>3.把功能处理方法的返回值添加到模型数据中</p>
+</blockquote>
+<pre><code>@RequestMapping(value=&quot;/index&quot;)
+public @ModelAttribute(&quot;u&quot;) User test3(){
+    User user = new User();
+    user.setUsername(&quot;tom&quot;);
+    user.setPassword(&quot;123&quot;);
+    return user;
+}
+
+注意:这时候SpringMVC会根据RequestToViewNameTranslator进行逻辑视图名的翻译,
+这个例子中也就会把&quot;index&quot;作为逻辑视图名进行解析
+
+注意:对于集合类型(Collection接口的实现者们,包括数组),
+生成的模型对象属性名为&quot;简单类名(首字母小写)&quot;+&quot;List&quot;,
+如List&lt;String&gt;生成的模型对象属性名&quot;stringList&quot;,
+List&lt;User&gt;生成的模型对象属性名为&quot;userList&quot;。
+例如:
+public @ModelAttribute List&lt;String&gt; test()
+public @ModelAttribute List&lt;User&gt; test()
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>o(╥﹏╥)o扫个码再走</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/weichat.jpg" alt="ijavaC 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/alipay.jpg" alt="ijavaC 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/Spring/" rel="tag"># Spring</a>
+          
+            <a href="/tags/Springmvc/" rel="tag"># Springmvc</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2018/01/31/Springmvc-二.html/" rel="next" title="Springmvc(二)">
+                <i class="fa fa-chevron-left"></i> Springmvc(二)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2018/02/05/SpringMVC-四.html/" rel="prev" title="SpringMVC (四)">
+                SpringMVC (四) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMzQ0Ni8xMDAwMg=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/logo.gif"
+                alt="ijavaC" />
+            
+              <p class="site-author-name" itemprop="name">ijavaC</p>
+              <p class="site-description motion-element" itemprop="description">ijavacs@gmail.com</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/fishool" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://bilibili.com/" title="哔哩哔哩" target="_blank">哔哩哔哩</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring2-5中引入注解对处理器-headler-支持"><span class="nav-number">1.</span> <span class="nav-text">Spring2.5中引入注解对处理器(headler)支持</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring2-5中引入注解对处理器-headler-支持-1"><span class="nav-number">2.</span> <span class="nav-text">Spring2.5中引入注解对处理器(headler)支持</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring3引入了更多的注解-其中包含了对RESTful架构风格的支持"><span class="nav-number">3.</span> <span class="nav-text">Spring3引入了更多的注解,其中包含了对RESTful架构风格的支持</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring3中引入的mvc命名空间"><span class="nav-number">4.</span> <span class="nav-text">Spring3中引入的mvc命名空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Controller和-RequestMapping注解"><span class="nav-number">5.</span> <span class="nav-text">@Controller和@RequestMapping注解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#声明处理器"><span class="nav-number">5.1.</span> <span class="nav-text">声明处理器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#映射处理器中的【功能处理方法】"><span class="nav-number">5.2.</span> <span class="nav-text">映射处理器中的【功能处理方法】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RequestMapping也可以写在处理器类上"><span class="nav-number">5.3.</span> <span class="nav-text">@RequestMapping也可以写在处理器类上</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#请求映射"><span class="nav-number">6.</span> <span class="nav-text">请求映射</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#URL路径映射"><span class="nav-number">7.</span> <span class="nav-text">URL路径映射</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#普通URL路径映射"><span class="nav-number">7.1.</span> <span class="nav-text">普通URL路径映射</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#URI模板模式映射"><span class="nav-number">7.2.</span> <span class="nav-text">URI模板模式映射</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ant风格的URL路径映射"><span class="nav-number">7.3.</span> <span class="nav-text">Ant风格的URL路径映射</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正则表达式风格的URL路径映射"><span class="nav-number">7.4.</span> <span class="nav-text">正则表达式风格的URL路径映射</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#请求方法映射限定"><span class="nav-number">8.</span> <span class="nav-text">请求方法映射限定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#请求参数映射限定"><span class="nav-number">9.</span> <span class="nav-text">请求参数映射限定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#请求头数据映射限定"><span class="nav-number">10.</span> <span class="nav-text">请求头数据映射限定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据绑定"><span class="nav-number">11.</span> <span class="nav-text">数据绑定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RequestParam绑定单个请求参数值"><span class="nav-number">12.</span> <span class="nav-text">@RequestParam绑定单个请求参数值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PathVariable绑定URI模板变量值"><span class="nav-number">13.</span> <span class="nav-text">@PathVariable绑定URI模板变量值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CookieValue绑定Cookie数据值"><span class="nav-number">14.</span> <span class="nav-text">@CookieValue绑定Cookie数据值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RequestHeader-绑定请求头数据"><span class="nav-number">15.</span> <span class="nav-text">@RequestHeader 绑定请求头数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ModelAttribute-绑定请求参数到命令对象"><span class="nav-number">16.</span> <span class="nav-text">@ModelAttribute 绑定请求参数到命令对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#该注解具有如下三个作用"><span class="nav-number">16.1.</span> <span class="nav-text">该注解具有如下三个作用:</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ijavaC</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java,Spring," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一,软件应用分层架构标准三层架构:1:数据访问层:主要是对原始数据(数据库或者文本文件等存放数据的形式)的操作层,而不是指原始数据,也就是说,是对数据的操作,而不是数据库,具体为业务逻辑层或表示层提供数据服务．2:业务逻辑层:主要是针对具体的问题的操作,也可以理解成对数据层的操作,对数据业务逻辑处理,如果说数据层是积木,那逻辑层就是对这些积木的搭建。具体的讲主要负责对数据层的操作。也就是说把一些数">
+<meta name="keywords" content="Java,Spring">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring 入门学习(一)">
+<meta property="og:url" content="https://www.ijavac.com/blog/2017/01/24/Spring-入门学习-一.html/index.html">
+<meta property="og:site_name" content="Let&#39;s get started">
+<meta property="og:description" content="一,软件应用分层架构标准三层架构:1:数据访问层:主要是对原始数据(数据库或者文本文件等存放数据的形式)的操作层,而不是指原始数据,也就是说,是对数据的操作,而不是数据库,具体为业务逻辑层或表示层提供数据服务．2:业务逻辑层:主要是针对具体的问题的操作,也可以理解成对数据层的操作,对数据业务逻辑处理,如果说数据层是积木,那逻辑层就是对这些积木的搭建。具体的讲主要负责对数据层的操作。也就是说把一些数">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ww2.sinaimg.cn/mw1024/005MGUrjgw1f18bw0y8f2j30le0u0dis.jpg">
+<meta property="og:updated_time" content="2018-01-23T16:32:43.964Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring 入门学习(一)">
+<meta name="twitter:description" content="一,软件应用分层架构标准三层架构:1:数据访问层:主要是对原始数据(数据库或者文本文件等存放数据的形式)的操作层,而不是指原始数据,也就是说,是对数据的操作,而不是数据库,具体为业务逻辑层或表示层提供数据服务．2:业务逻辑层:主要是针对具体的问题的操作,也可以理解成对数据层的操作,对数据业务逻辑处理,如果说数据层是积木,那逻辑层就是对这些积木的搭建。具体的讲主要负责对数据层的操作。也就是说把一些数">
+<meta name="twitter:image" content="https://ww2.sinaimg.cn/mw1024/005MGUrjgw1f18bw0y8f2j30le0u0dis.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://www.ijavac.com/blog/2017/01/24/Spring-入门学习-一.html/"/>
+
+
+
+
+
+  <title>Spring 入门学习(一) | Let's get started</title>
+  
+
+
+
+
+
+
+
+
+  <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Let's get started</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Coding4Life</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.ijavac.com/blog/2017/01/24/Spring-入门学习-一.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ijavaC">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Let's get started">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Spring 入门学习(一)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-24T00:07:32+08:00">
+                2017-01-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="一-软件应用分层架构"><a href="#一-软件应用分层架构" class="headerlink" title="一,软件应用分层架构"></a>一,软件应用分层架构</h2><h3 id="标准三层架构"><a href="#标准三层架构" class="headerlink" title="标准三层架构:"></a>标准三层架构:</h3><p>1:数据访问层:主要是对原始数据(数据库或者文本文件等存放数据的形式)的操作层,而不是指原始数据,也就是说,是对数据的操作,而不是数据库,具体为业务逻辑层或表示层提供数据服务．<br>2:业务逻辑层:主要是针对具体的问题的操作,也可以理解成对数据层的操作,对数据业务逻辑处理,如果说数据层是积木,那逻辑层就是对这些积木的搭建。具体的讲主要负责对数据层的操作。也就是说把一些数据层的操作进行组合。<br>3:表示层:主要表示WEB方式,如果逻辑层相当强大和完善,无论表现层如何定义和更改,逻辑层都能完善地提供服务。主要对用户的请求接受,以及数据的返回,为客户端提供应用程序的访问。</p>
+<p><img src="https://ww2.sinaimg.cn/mw1024/005MGUrjgw1f18bw0y8f2j30le0u0dis.jpg" alt="一拳超人"><br><a id="more"></a></p>
+<p>优点:<br>    1:开发人员可以只关注整个结构中的其中某一层；<br>    2:可以很容易的用新的实现来替换原有层次的实现；<br>    3:可以降低层与层之间的依赖；<br>    4:有利于标准化；<br>    5:利于各层逻辑的复用。<br>    6:结构更加的明确<br>    7:在后期维护的时候,极大地降低了维护成本和维护时间</p>
+<p>缺点:<br>    1:降低了系统的性能。这是不言而喻的。如果不采用分层式结构,很多业务可以直接造访数据库,以此获取相应的数据,如今却必须通过中间层来完成。<br>    2:有时会导致级联的修改。这种修改尤其体现在自上而下的方向。如果在表示层中需要增加一个功能,为保证其设计符合分层式结构,可能需要在相应的业务逻辑层和数据访问层中都增加相应的代码。<br>    3:增加了开发成本。</p>
+<h2 id="二-Spring相关概念"><a href="#二-Spring相关概念" class="headerlink" title="二,Spring相关概念"></a>二,Spring相关概念</h2><blockquote>
+<p>少数的jar+某一个功能的配置文件</p>
+</blockquote>
+<ol>
+<li>轻量级的容器:<br>容器 : spring容器帮我们管理 业务逻辑层 ,里边有很多业务逻辑对象,有对象就有对象的生命周期的管理(创建,销毁).</li>
+</ol>
+<p>Spring容器 : 管理对象</p>
+<p>轻量级:容器给予的业务逻辑对象多少种服务？spring给用户提供的服务完全有用户自己决定,spring想用什么服务自己开启使用。但是重量级的都是只要你用就把所有的服务都给你,不能自己定制。</p>
+<p>spring容器从来不能独立运行,一定借助于其他容器启动,或<br>者借助web容器启动,或者ejb容器启动。</p>
+<p>web容器 : tomcat</p>
+<p>特点:<br> 应用模块之间耦合度小,组件(bean)都是可重用的,都是各自打包的, .jar</p>
+<ol>
+<li><p>why spring？</p>
+<ol>
+<li><p>动态解耦,方便开发,面向接口设计</p>
+<p>IOC:控制反转<br>对象的创建销毁权利 –&gt; 反转—&gt;spring容器<br> 通过Spring提供的IoC容器,我们可以将对象之间的依赖关系交由Spring进行控制,避免硬编码所造成的过度程序耦合。有了Spring,用户不必再为单实例模式类、属性文件解析等这些很底层的需求编写代码,可以更专注于上层的应用</p>
+</li>
+<li><p>方便程序的测试TDD(Test-Driven Development)<br> 可以用非容器依赖的编程方式进行几乎所有的测试工作,在Spring里,测试不再是昂贵的操作,而是随手可做的事情。</p>
+</li>
+<li>降低Java EE API的使用难度<br> Spring对很多难用的Java EE API(如JDBC,JavaMail,远程调用等)提供了一个简单的封装层,通过Spring的简易封装,这些Java EE API的使用难度大为降低。</li>
+<li>方便集成各种优秀框架<br> Spring不排斥各种优秀的开源框架,相反,Spring可以降低各种框架的使用难度,Spring提供了对各种优秀框架(如Struts,Hibernate、Hessian、Quartz)等的直接支持。<br> SSH : spring + struts + hibernate<br> SSM : spring + stringMVC + mybatis</li>
+<li>AOP编程的支持<br> 通过Spring提供的AOP功能,方便进行面向切面的编程,许多不容易用传统OOP实现的功能可以通过AOP轻松应付。</li>
+<li>声明式事务的支持<br> 在Spring中,我们可以从单调烦闷的事务管理代码中解脱出来,通过声明式方式灵活地进行事务的管理,提高开发效率和质量。<br>编程式事物:<br>estore: 程序员手动代码提交事物<pre><code>catch(){回滚事物}
+</code></pre>事物的提交:<br>哪个？ –&gt; service–&gt;<br>一个业务逻辑完成以后 提交事物 <h2 id="service-做业务逻辑的处理"><a href="#service-做业务逻辑的处理" class="headerlink" title="   service:做业务逻辑的处理;"></a>   service:做业务逻辑的处理;</h2>++<br>提交事物(为了代码的完整性)<br>回滚事物<br>Spring声明式事物: 配置<br> 声明一下，在哪里提交事物 和 回滚事物<br> Spring</li>
+<li>对异常的处理方式,所有的都转换成Unchecked的。</li>
+<li>它不是一个一体化的解决方案。</li>
+<li>良好的设计,容易扩展,很多可重用的组件</li>
+</ol>
+</li>
+</ol>
+<ol>
+<li>Spring核心组件(我们主要学习的是IOC和AOP模块)<br> (1)、Spring Core(IOC) 核心容器,提供组件(bean)的创建、装配、销毁<br> (2)、Spring Context Spring上下文,是一个接口ApplicationContext(继承自BeanFactory接口)的实现<br> (3)、Spring Web容器,web应用上下文,是webApplicationContext接口的实现<br> (4)、Spring DAO容器,是SpringDAO 支持模块,是为了简化DAO的使用<br> (5)、Spring ORM<br> (6)、Spring AOP ,对AOP编程支持的模块<br> (7)、Spring MVC,类似于Spring表示层的一个框架</li>
+</ol>
+<ol>
+<li><p>spring ioc(must):<br>IOC:Inversion of Control 控制反转 给spring容器(IOC容器)     </p>
+<pre><code>   将创建对象的权利  反转给spring容器
+一种说法:对象之间的依赖关系,由容器在运行时依据配置文件动态的建立
+另一种说法:对象的控制器转移了,转到外部容器了,避免了代码的纠缠,代码更容易被维护,模板之间的耦合性降低,容易测试
+</code></pre><p>IoC 控制反转意味着将你设计好的类交给容器去控制,而不是在类的内部进行控制,即控制权由应用代码中转到了外部容器<br>DI:Dependency Injection 依赖注入 ,组件不做定位查询,只提供相应方法,由容器创建对象,并调用相应方法设置所需对象需要的组件</p>
+<p> IOC解决:对象谁来创建的问题<br>  DI解决:对象间的关系如何建立的问题。<br>   将容器中的 对象 注入到容器中的另一个对象中</p>
+<pre><code>org.springframework.beans及org.springframework.context包是IOC容器的基础
+</code></pre></li>
+<li><p>SpringIOC核心api</p>
+<p>BeanFactory接口和容器</p>
+<p>BeanFactory是Spring中Bean容器,IoC的核心接口,主要用于处理Bean的初始化和配置,建立对象间的依赖关系</p>
+<p>定义了如下方法:<br>Object getBean(String name) //根据指定名称返回一个Bean实例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;T&gt; T getBean(Class&lt;T&gt; requiredType)   //返回一个与给定Class唯一匹配的Bean实例</span><br><span class="line"></span><br><span class="line">Class&lt;?&gt; getType(String name)       //得到名称为name的Bean的Class对象</span><br><span class="line"></span><br><span class="line">boolean isPrototype(String name)   //判断名称为name的Bean是否是原型,</span><br><span class="line">                                       //即是否总是返回一个新实例</span><br><span class="line">boolean isSingleton(String name)   //判断名称为name的Bean是否是单例</span><br><span class="line"></span><br><span class="line">boolean containsBean(String name)  //判断是否包含给定名称的Bean实例</span><br><span class="line"></span><br><span class="line">boolean isTypeMatch(String name, Class&lt;?&gt; targetType)</span><br><span class="line">                      //判断名称为name的Bean实例是否为targetType类型</span><br><span class="line">String[] getAliases(String name)  //如果名称为name的Bean有别名返回</span><br></pre></td></tr></table></figure>
+<p>通过getBean方法便可以得到相应的类实例,但是最好永远不调用,而使用注入,<br>避免对Spring API的依赖</p>
+<p>在Spring中,同一Spring容器中的bean默认情况下是Singleton(单例),将在bean<br>的作用域介绍.</p>
+</li>
+</ol>
+<p>ApplicationContext接口<br>   该接口继承于BeanFactory,增强了BeanFactory,提供了事务处理AOP,国际化,事件传递</p>
+<p>   所以在代码中我们一般会使用ApplicationContext接口,以及这个接口相应的实现类来创建spring的容器对象。<br>   例如:<br>   String path = “com/briup/ioc/set/set.xml”;<br>   ApplicationContext container = new ClassPathXmlApplicationContext(path);</p>
+<p>ioc容器的创建:<br> 利用xml创建  abc.xml<br>  container = new ClassPathXMLAC(abc.xml)</p>
+<ol>
+<li><p>配置文件<br>Spring通过读取配置文件中的数据来对应用中各个对象进行实例化,配置以及组装,通常使用XML文件来作为配置文件。<br>XML基本结构如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;</span><br><span class="line">    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">    xmlns:context=&quot;http://www.springframework.org/schema/context&quot;</span><br><span class="line">    xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans</span><br><span class="line">       http://www.springframework.org/schema/beans/spring-beans-3.2.xsd</span><br><span class="line">       http://www.springframework.org/schema/context</span><br><span class="line">       http://www.springframework.org/schema/context/spring-context-3.2.xsd&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+<p>这个文件的头部声明可以在下载的spring文档中的示例找到.注意这里面用到了俩个schema文件(.xsd文件),就是spring-beans-3.2.xsd和spring-context-3.2.xsd,这俩个文件在下载的spring文档中也是可以找到的.我们在Eclipse中把xml文件和schema文件关联(注意上课的演示步骤)后,在这个xml中就可以有智能提示了。还有一点需要注意,将来我们这xml中再引入另外的schema文件后在配置的时候就可以智能提示出新的配置内容,spring是又很多模块组成的,我们需要什么功能的配置标签就需要引入对应的schema文件,从而获得智能提示,同时也能帮我们验证配置的正确性</p>
+</li>
+</ol>
+<ol>
+<li><p>IOC注入</p>
+<ol>
+<li>set方式注入(必须依靠set方法)    name=”xxx”  需要对应class中存在对应的 setXxx 方法<br>可以注入的内容有:<br>A、基本类型(8中基本类型+字符串)的装配<br>B、对象类型的装配<br>C、集合的装配</li>
+</ol>
+<p>A、基本类型的装配<br>   方式: 配置元素<value><br>   例子:</value></p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class HelloBean &#123;</span><br><span class="line">    private String name;</span><br><span class="line">    private int age;</span><br><span class="line">    public String sayHello()&#123;</span><br><span class="line">        return &quot;hello &quot;+name +&quot;,your age is&quot; + age;</span><br><span class="line">    &#125;</span><br><span class="line">    .............</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 配置文件set.xml</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;helloBean&quot; class=&quot;ioc.HelloBean&quot;&gt;</span><br><span class="line">    &lt;property name=&quot;name&quot;&gt;</span><br><span class="line">        &lt;value&gt;tom&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">        &lt;property name=&quot;age&quot; value=&quot;20&quot;&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<pre><code>id是Bean的唯一标识,要求在整个配置文件中要唯一,也可使用name属性,bean标签里面的id和name属性都可以用来标识这个配置的对象,但是id会帮我们检查给对象起的名字是否规范(名字不能重复、不能用数字开头、不能有空格等等),如果检查出来了那么就会报错。name属性不会帮检查这些东西。
+</code></pre><blockquote>
+<p>property 对于所有用set方式来注入的必须改标签</p>
+<p>value    是对以基本类型,都用value(标签/属性)来注入,可以实现自动的数据类型转换</p>
+</blockquote>
+<pre><code>测试类:
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">main:</span><br><span class="line"> ApplicationContext ac =</span><br><span class="line">     new ClassPathXmlApplicationContext(&quot;set.xml&quot;);    //可以指定多个配置文件</span><br><span class="line"> //获取容器的一个实例</span><br><span class="line"> HelloBean hb = (HelloBean) ac.getBean(&quot;helloBean&quot;);</span><br><span class="line"> System.out.println(hb.sayHello());</span><br></pre></td></tr></table></figure>
+</code></pre><p>   B、对象类型的装配   </p>
+<pre><code>  (1)、&lt;ref local=&quot; &quot;/&gt; 用于涉及的对象的id在当前配置文件中(用于在本配置文件中配置了的bean的引入同ref=&quot;..&quot;)
+  (2)、&lt;ref bean=&quot; &quot;/&gt;  用于涉及的对象的id不在本配置文件中    //创建容器的时候 指定了多个配置文件 
+(用于引用不在本配置文件中配置的bean)
+  (3)、使用property的ref属性引用
+
+
+
+
+public class OtherBean {
+    private String str1;
+    public String getStr1() {
+        return str1;
+    }
+    public void setStr1(String str1) {
+        this.str1 = str1;
+    }
+    public String toString(){
+        return &quot;OtherBean &quot;+str1;
+    }
+}
+
+public class SomeBean {
+    private OtherBean ob;
+    public void printInfo(){
+        System.out.println(&quot;someBean &quot;+ob);
+    }
+    public OtherBean getOb() {
+        return ob;
+    }
+    public void setOb(OtherBean ob) {
+        this.ob = ob;
+    }
+}
+
+配置applicationContext.xml
+&lt;bean id=&quot;someBean&quot; class=&quot;ioc.SomeBean&quot;&gt;
+    &lt;property name=&quot;ob&quot;&gt;
+        &lt;ref bean=&quot;otherBean&quot; /&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+配置other.xml文件
+&lt;bean id=&quot;otherBean&quot; class=&quot;ioc.OtherBean&quot;&gt;
+    &lt;property name=&quot;str1&quot;&gt;
+        &lt;value&gt;string1&lt;/value&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+
+测试类:
+main:
+    String[] path = {&quot;ioc/applicationContext.xml&quot;,&quot;ioc/other.xml&quot;};
+    ApplicationContext ac = new ClassPathXmlApplicationContext(path);
+    SomeBean sb = (SomeBean) ac.getBean(&quot;someBean&quot;);
+    sb.printInfo();
+</code></pre><p>   C、集合的装配<br>    方式:配置元素<list> <set> <map> <props></props></map></set></list></p>
+<pre><code>public class SomeBean {
+    private List listProperty;
+    private Set setProperty;
+    private Map mapProperty;
+    private Properties&lt;String,String&gt; property;
+    public List getListProperty() {
+        return listProperty;
+    }
+    public void setListProperty(List listProperty) {
+        this.listProperty = listProperty;
+    }
+    public Set getSetProperty() {
+        return setProperty;
+    }
+    public void setSetProperty(Set setProperty) {
+        this.setProperty = setProperty;
+    }
+    public Map getMapProperty() {
+        return mapProperty;
+    }
+    public void setMapProperty(Map mapProperty) {
+        this.mapProperty = mapProperty;
+    }
+    public Properties getProperty() {
+        return property;
+    }
+    public void setProperty(Properties property) {
+        this.property = property;
+    }
+    public void printInfo(){
+        System.out.println(&quot;listProperty&quot;);
+        System.out.println(listProperty);
+        System.out.println(&quot;setProperty&quot;);
+        System.out.println(setProperty);
+        Set set = mapProperty.entrySet();
+        Iterator it = set.iterator();
+        while(it.hasNext()){
+             Map.Entry entry = (Entry) it.next();
+             System.out.println(&quot;Key &quot; +entry.getKey() );
+             System.out.println(&quot;value &quot;+entry.getValue());
+        }
+        System.out.println(&quot;props: &quot;);
+        Set set2 = property.entrySet();
+        Iterator it2 = set2.iterator();
+        while(it2.hasNext()){
+            Map.Entry entry= (Entry) it2.next();
+            System.out.println(&quot;key &quot;+entry.getKey());
+            System.out.println(&quot;value &quot;+entry.getValue());
+        }
+    }
+}
+
+applcationContext.xml的写法:
+&lt;bean id=&quot;someBean&quot; class=&quot;ioc.SomeBean&quot;&gt;
+    &lt;property name=&quot;listProperty&quot;&gt;
+         &lt;list&gt;
+            &lt;value&gt;list1&lt;/value&gt;
+            &lt;value&gt;list1&lt;/value&gt;
+            &lt;value&gt;list3&lt;/value&gt;
+         &lt;/list&gt;
+    &lt;/property&gt;
+    &lt;property name=&quot;setProperty&quot;&gt;
+         &lt;set&gt;
+            &lt;value&gt;set1&lt;/value&gt;
+            &lt;value&gt;set1&lt;/value&gt;
+            &lt;value&gt;set3&lt;/value&gt;
+         &lt;/set&gt;
+    &lt;/property&gt;
+    &lt;property name=&quot;mapProperty&quot;&gt;
+         &lt;map&gt;
+            &lt;entry key=&quot;key1&quot;&gt;
+              &lt;value&gt;value1&lt;/value&gt;
+            &lt;/entry&gt;
+            &lt;entry key=&quot;key2&quot;&gt;
+              &lt;value&gt;value2&lt;/value&gt;
+            &lt;/entry&gt;
+         &lt;/map&gt;
+    &lt;/property&gt;
+    &lt;property name=&quot;property&quot;&gt;
+         &lt;props&gt;
+          &lt;prop key=&quot;key1&quot;&gt;prop1&lt;/prop&gt;
+          &lt;prop key=&quot;key2&quot;&gt;prop2&lt;/prop&gt;
+          &lt;prop key=&quot;key3&quot;&gt;prop3&lt;/prop&gt;
+         &lt;/props&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+
+测试类:
+main:
+    String path = &quot;ioc/applicationContext.xml&quot;;
+    ApplicationContext  ac =
+        new ClassPathXmlApplicationContext(path);
+    SomeBean sb = (SomeBean) ac.getBean(&quot;someBean&quot;);
+    sb.printInfo();
+</code></pre><ol>
+<li><p>基于构造器注入<br>方式: 配置<constructor-arg>元素<br>在Bean中不用写set方法,但是要有相应的构造器</constructor-arg></p>
+<p>构造器注入有俩种形式 一个是根据参数类型 一个是根据参数位置的下标</p>
+</li>
+</ol>
+<pre><code>    &lt;constructor-arg type=&quot;int&quot; value=&quot;&quot;&gt;
+    &lt;constructor-arg  index=&quot;0&quot; value=&quot;&quot;&gt;
+例如:
+&lt;bean name=&quot;student&quot; class=&quot;com.briup.bean.Student&quot;&gt;
+        &lt;constructor-arg type=&quot;int&quot; value=&quot;25&quot;&gt;
+        &lt;/constructor-arg&gt;
+
+        &lt;constructor-arg type=&quot;java.lang.String&quot; value=&quot;tom&quot;&gt;
+        &lt;/constructor-arg&gt;
+
+        &lt;constructor-arg type=&quot;long&quot; value=&quot;100&quot;&gt;
+        &lt;/constructor-arg&gt;
+
+&lt;/bean&gt;
+
+或者:
+&lt;bean name=&quot;student&quot; class=&quot;com.briup.bean.Student&quot;&gt;
+     &lt;constructor-arg index=&quot;2&quot;&gt;
+        &lt;value&gt;30&lt;/value&gt;
+     &lt;/constructor-arg&gt;
+
+     &lt;constructor-arg index=&quot;0&quot;&gt;
+        &lt;value&gt;200&lt;/value&gt;
+     &lt;/constructor-arg&gt;
+
+     &lt;constructor-arg index=&quot;1&quot;&gt;
+        &lt;value&gt;lily&lt;/value&gt;
+     &lt;/constructor-arg&gt;
+&lt;/bean&gt;
+</code></pre><ol>
+<li><p>自动注入 :容器依照一些规则去装配bean中的一个属性                        装配引用型数据类型<br>   注意:自动装配只对[对象类型]起作用,对基本类型不起作用.<br>   第一种情况:<br>   在beans标签中配置装载方式:default-autowire=”byName”<br>   default-autowire=”byName”</p>
+<pre><code>在根元素beans中加入这个属性,那么下面所有的bean都会
+使用byName的方式进行自动注入,如果在下面的某一个bean
+里面想使用其他的方式进行注入,可以用autowire=&quot;&quot;属性进行
+说明,或者某一个bean不想使用任何自动注入就使用autowire=&quot;no&quot;
+</code></pre><p>   第二种情况:<br>   在bean标签中指定配置方式<br>   autowire=”byName”:</p>
+<pre><code>spring容器会到当前的类中找property的名字,然后
+再根据这个名字去spring容器中找有没有和这个property
+名字相同的对象,有的话,就把这个对象当做参数放到
+setXxxx这个方法里面注入进来.
+注意:了解property指的类中的什么东西。  property 是指类中 拥有 get set 方法 的 field
+找到多个,报错
+</code></pre><p>   autowire=”byType”:</p>
+<pre><code>spring容器会根据当前类中的set方法里面参数的类型,
+去容器中找相匹配的对象,如果没找到就算了,如果找到
+一个就注入进来,如果找到多个,那么就会报错了.
+</code></pre><p>   autoWrite=”constructor”</p>
+<pre><code>根据构造器的参数类型去匹配
+</code></pre></li>
+</ol>
+<ol>
+<li><p>继承:并不是oo的继承关系<br>   bean的定义的继承,指bean的配置可去继承</p>
+<pre><code>true 抽象化 代码中不能getBean获取其对象
+</code></pre><p>   abstract =</p>
+<pre><code>false 默认
+</code></pre><p>   parent = “父类bean的id/name”</p>
+<p>   例子:</p>
+ <bean name="student" class="com.briup.bean.Student"><br>     <property name="name"><br>         <value>zhangsan</value><br>     </property><br> </bean>
+
+
+
+</li>
+</ol>
+<pre><code>&lt;!--
+    abstract=&quot;true&quot; 表示当前的配置是一个抽象的配置,
+    这时候我们在代码中就不能通过这个bean的名字teacher来
+    获得相应的对象了(和java中的抽象类不能直接new对象的道理一样)
+
+    但是我们可以在写一个配置去继承这个抽象的配置,当然即使当前
+    这个配置不是抽象的,也能够被继承(和java中继承一样)
+--&gt;
+
+&lt;bean name=&quot;teacher&quot; class=&quot;com.briup.bean.Teacher&quot; abstract=&quot;true&quot;&gt;
+    &lt;property name=&quot;student&quot; ref=&quot;student&quot;&gt;&lt;/property&gt;
+&lt;/bean&gt;
+
+&lt;!--
+    parent=&quot;teacher&quot; 表示当前配置是继承了另外一个名字叫
+    teacher的bean的配置,配置和配置的继承像java中的类和类
+    直接的继承一样,子类会把父类中的对象继承过来.
+    当然在子配置里面依然是可以覆盖父配置中已经写的配置信息.
+--&gt;
+
+&lt;bean name=&quot;t&quot; parent=&quot;teacher&quot;&gt;     //继承teacher  继承父配置中的东西
+
+ &lt;property name=&quot;id&quot;&gt;
+        &lt;value&gt;11&lt;/value&gt;
+    &lt;/property&gt;
+
+    &lt;property name=&quot;name&quot;&gt;
+        &lt;value&gt;TeacherWang&lt;/value&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+</code></pre><ol>
+<li><p>bean对象的生命周期</p>
+<pre><code>单例管理的对象:
+1. 默认情况下,spring在读取xml文件的时候,就会创建对象。
+2. 在创建的对象的时候(先调用构造器),会去调用init-method=&quot;..&quot;
+属性值中所指定的方法.
+3. 对象在被销毁的时候,会调用destroy-method=&quot;...&quot;属性值中          spring容器关闭时被销毁
+所指定的方法.(例如调用container.destroy()方法的时候)
+4. lazy-init=&quot;true&quot;,可以让这个对象在第一次被访问的时候创建
+</code></pre></li>
+</ol>
+<pre><code>非单例管理的对象:
+1. spring读取xml文件的时候,不会创建对象.
+2. 在每一次访问这个对象的时候,spring容器都会创建这个对象,并且   
+调用init-method=&quot;..&quot;属性值中所指定的方法.
+3. 对象销毁的时候,spring容器不会帮我们调用任何方法,
+因为是非单例,这个类型的对象有很多个,spring容器一旦把
+这个对象交给你之后,就不再管理这个对象了.
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>o(╥﹏╥)o扫个码再走</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/weichat.jpg" alt="ijavaC 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/alipay.jpg" alt="ijavaC 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/Spring/" rel="tag"># Spring</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2018/01/25/Spring概念简记.html/" rel="prev" title="Spring概念简记">
+                Spring概念简记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMzQ0Ni8xMDAwMg=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/logo.gif"
+                alt="ijavaC" />
+            
+              <p class="site-author-name" itemprop="name">ijavaC</p>
+              <p class="site-description motion-element" itemprop="description">ijavacs@gmail.com</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/fishool" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://bilibili.com/" title="哔哩哔哩" target="_blank">哔哩哔哩</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一-软件应用分层架构"><span class="nav-number">1.</span> <span class="nav-text">一,软件应用分层架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#标准三层架构"><span class="nav-number">1.1.</span> <span class="nav-text">标准三层架构:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-Spring相关概念"><span class="nav-number">2.</span> <span class="nav-text">二,Spring相关概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#service-做业务逻辑的处理"><span class="nav-number">3.</span> <span class="nav-text">   service:做业务逻辑的处理;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ijavaC</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
